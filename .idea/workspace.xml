@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2935478a-5749-4920-a2ea-74aa5b7f2993" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReadMarcFile/OutFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMarcFile/OutFile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Triangulation/mesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/Triangulation/mesh.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainRunAll.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainRunAll.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,27 +50,99 @@
         <counts>
           <entry key="project.closed" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="1148" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="1148" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="out" value="1" />
+          <entry key="py" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="6" />
         </counts>
       </usages-collector>
     </session>
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="RockCrackingTools" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mainRunAll.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="43" column="21" lean-forward="true" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+            <state relative-caret-position="200">
+              <caret line="106" column="38" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ReadMarcFile/OutFile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1386">
+              <caret line="59" column="46" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+              <folding>
+                <element signature="e#1811#4891#0" />
+                <element signature="e#4932#5015#0" />
+                <element signature="e#5118#5204#0" />
+                <element signature="e#5279#5295#0" />
+                <element signature="e#5266#5595#0" />
+                <element signature="e#5646#5650#0" />
+                <element signature="e#5700#5704#0" />
+                <element signature="e#5753#5757#0" />
+                <element signature="e#5804#5919#0" />
+                <element signature="e#5971#6034#0" />
+                <element signature="e#6083#6103#0" />
+                <element signature="e#6154#7420#0" />
+                <element signature="e#7465#8799#0" />
+                <element signature="e#8846#9151#0" />
+                <element signature="e#9196#9390#0" />
+                <element signature="e#9445#10063#0" />
+                <element signature="e#10098#10181#0" />
+                <element signature="e#10230#11019#0" />
+                <element signature="e#11063#12190#0" />
+                <element signature="e#12237#12794#0" />
+                <element signature="e#12838#13196#0" />
+                <element signature="e#13244#13682#0" />
+                <element signature="e#13725#14051#0" />
+                <element signature="e#14097#14222#0" />
+                <element signature="e#14279#14743#0" />
+                <element signature="e#15772#16454#0" />
+                <element signature="e#16492#16547#0" />
+                <element signature="e#16675#17135#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ReadMarcFile/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-665" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Triangulation/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="112" column="33" lean-forward="true" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
+            <state relative-caret-position="136">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -78,62 +153,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Triangulation/mesh.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3542">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="3134">
+              <caret line="354" column="58" lean-forward="true" selection-start-line="354" selection-start-column="58" selection-end-line="354" selection-end-column="58" />
               <folding>
-                <marker date="1539924527364" expanded="true" signature="6507:6538" ph="..." />
+                <element signature="e#0#82#0" expanded="true" />
+                <marker date="1539971844158" expanded="true" signature="3955:4150" ph="..." />
+                <marker date="1539971844158" expanded="true" signature="6965:7375" ph="..." />
+                <marker date="1539971844158" expanded="true" signature="7021:7375" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ReadMarcFile/PlotData.py">
+        <entry file="file://$PROJECT_DIR$/Triangulation/node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1649">
-              <caret line="98" column="57" selection-start-line="98" selection-start-column="57" selection-end-line="98" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ReadMarcFile/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Triangulation/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="16" selection-start-column="16" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ReadMarcFile/StressPlotGenerator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Triangulation/createmesh.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
+            <state relative-caret-position="-323" />
           </provider>
         </entry>
       </file>
@@ -143,6 +178,7 @@
     <findStrings>
       <find>cannot create stress file for writing</find>
       <find>FindNextIncrement</find>
+      <find>filename</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -161,23 +197,24 @@
         <option value="$PROJECT_DIR$/ReadMarcFile/PlotData.py" />
         <option value="$PROJECT_DIR$/Triangulation/__init__.py" />
         <option value="$PROJECT_DIR$/Triangulation/createmesh.py" />
-        <option value="$PROJECT_DIR$/Triangulation/mesh.py" />
         <option value="$PROJECT_DIR$/ReadMarcFile/StressPlotGenerator.py" />
+        <option value="$PROJECT_DIR$/Triangulation/main.py" />
+        <option value="$PROJECT_DIR$/Triangulation/mesh.py" />
+        <option value="$PROJECT_DIR$/ReadMarcFile/OutFile.py" />
         <option value="$PROJECT_DIR$/mainRunAll.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="209" />
-    <option name="y" value="53" />
-    <option name="width" value="1400" />
-    <option name="height" value="921" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,11 +222,15 @@
               <item name="RockCrackingTools" type="b2602c69:ProjectViewProjectNode" />
               <item name="RockCrackingTools" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="RockCrackingTools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RockCrackingTools" type="462c0819:PsiDirectoryNode" />
+              <item name="ReadMarcFile" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -250,15 +291,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="209" y="53" width="1400" height="921" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24945612" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.42705166" visible="true" weight="0.20735383" />
+      <window_info id="Structure" order="1" sideWeight="0.57294834" side_tool="true" weight="0.20735383" />
+      <window_info id="Favorites" order="2" sideWeight="0.50151974" side_tool="true" weight="0.20735383" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3293124" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32857144" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39927623" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -299,7 +340,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mainRunAll.py</url>
-          <line>20</line>
+          <line>22</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -336,9 +377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ReadMarcFile/main.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/ReadMarcFile/MyElementData.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -369,6 +407,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ReadMarcFile/StressPlotGenerator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Triangulation/createmesh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -379,37 +424,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ReadMarcFile/StressPlotGenerator.py">
+    <entry file="file://$USER_HOME$/.conda/envs/Triangulation/lib/python3.6/site-packages/matplotlib/cbook/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+        <state relative-caret-position="210">
+          <caret line="391" selection-start-line="391" selection-end-line="391" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Triangulation/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-323" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Triangulation/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ReadMarcFile/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-665" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/TEMP/RockCracking/src/fullRun.out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1959" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/TEMP/RockCracking/src/mainRunAll.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-973" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Triangulation/mesh.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3542">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="3134">
+          <caret line="354" column="58" lean-forward="true" selection-start-line="354" selection-start-column="58" selection-end-line="354" selection-end-column="58" />
           <folding>
-            <marker date="1539924527364" expanded="true" signature="6507:6538" ph="..." />
+            <element signature="e#0#82#0" expanded="true" />
+            <marker date="1539971844158" expanded="true" signature="3955:4150" ph="..." />
+            <marker date="1539971844158" expanded="true" signature="6965:7375" ph="..." />
+            <marker date="1539971844158" expanded="true" signature="7021:7375" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ReadMarcFile/OutFile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1386">
+          <caret line="59" column="46" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+          <folding>
+            <element signature="e#1811#4891#0" />
+            <element signature="e#4932#5015#0" />
+            <element signature="e#5118#5204#0" />
+            <element signature="e#5279#5295#0" />
+            <element signature="e#5266#5595#0" />
+            <element signature="e#5646#5650#0" />
+            <element signature="e#5700#5704#0" />
+            <element signature="e#5753#5757#0" />
+            <element signature="e#5804#5919#0" />
+            <element signature="e#5971#6034#0" />
+            <element signature="e#6083#6103#0" />
+            <element signature="e#6154#7420#0" />
+            <element signature="e#7465#8799#0" />
+            <element signature="e#8846#9151#0" />
+            <element signature="e#9196#9390#0" />
+            <element signature="e#9445#10063#0" />
+            <element signature="e#10098#10181#0" />
+            <element signature="e#10230#11019#0" />
+            <element signature="e#11063#12190#0" />
+            <element signature="e#12237#12794#0" />
+            <element signature="e#12838#13196#0" />
+            <element signature="e#13244#13682#0" />
+            <element signature="e#13725#14051#0" />
+            <element signature="e#14097#14222#0" />
+            <element signature="e#14279#14743#0" />
+            <element signature="e#15772#16454#0" />
+            <element signature="e#16492#16547#0" />
+            <element signature="e#16675#17135#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mainRunAll.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="43" column="21" lean-forward="true" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Triangulation/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="112" column="33" lean-forward="true" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="200">
+          <caret line="106" column="38" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
         </state>
       </provider>
     </entry>

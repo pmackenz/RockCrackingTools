@@ -12,28 +12,29 @@ from MyNode import *
 class OutFile(object):
     '''
     variables:
-        self.filename = ""
+        self.filename   = ""
         self.file
-        self.file_open = False
+        self.file_open  = False
         self.data       = MyData()
         self.increments = {}
         self.elements   = {}
         self.nodes      = {}
-        self.line = ""
+        self.line       = ""
         self.MinMaxData = {}
-        self.nSegments = nSegments     # (int)
-        self.diameter  = diameter      # (float)
-        self.delta     = skin_depth    # (float)
-        self.sigma0    = sigma0        # (float)
-        self.m         = exponent_m    # (float)
-        self.Vol0      = Vol0          # (float)
-        self.volume    = zeros(nSegments)
-        self.radii     = array()
+        self.nSegments  = nSegments     # (int)
+        self.diameter   = diameter      # (float)
+        self.delta      = skin_depth    # (float)
+        self.sigma0     = sigma0        # (float)
+        self.m          = exponent_m    # (float)
+        self.Vol0       = Vol0          # (float)
+        self.volume     = zeros(nSegments)
+        self.radii      = array()
     
     methods:
         __init__(self, filename, diameter, skin_depth)
         __del__(self)
         setParameters(self, diameter, skin_depth, sigma0, exponent_m, V0)
+        setNskip(self, nskip)
         GetNodes(self, nodes)
         GetElements(self, elements)
         GetGaussPoints(self, gpts)
@@ -56,6 +57,7 @@ class OutFile(object):
         countGaussPoints(self)
         verifyIncrementData(self, inc=-1)
         GetWeibullData(self,inc=-1)
+        GetDirData(self, directions=[], inc=-1)
         ReportOpen(self)
         ReportClose(self)
     '''
@@ -70,11 +72,11 @@ class OutFile(object):
             skin_depth = 0.5*(diameter + 0.001)
         
         self.delta     = skin_depth
-        nSegments = int(ceil(0.5*diameter/skin_depth))
+        nSegments      = int(ceil(0.5*diameter/skin_depth))
         
         self.nSegments = nSegments
         self.diameter  = diameter
-        self.dia_cm=int(self.diameter*100)
+        self.dia_cm    = int(self.diameter*100)
         self.delta     = skin_depth  
         
         self.volume    = zeros(nSegments)
@@ -158,8 +160,10 @@ class OutFile(object):
         self.sigma0   = sigma0
         self.m        = exponent_m
         self.Vol0     = Vol0
-        
-            
+
+    def setNskip(self, nskip):
+        self.nskip = nskip
+
     def GetNodes(self, nodes):
         if self.file_open:
             for self.line in self.file:
@@ -235,7 +239,7 @@ class OutFile(object):
                     thisInc.printProbabilities()
                     volume = thisInc.scanVolume()
                     [time1,time2]=self.InctoTime(thisInc.ID)
-                    filename_dir="../data/{}_direction_{}.txt".format(self.dia_cm,time1)
+                    filename_dir="./data/{}_direction_{}.txt".format(self.dia_cm,time1)
                     thisInc.ScanStress(filename_dir)
                     #thisInc.PlotStressDirection(filename_dir,self.dia_cm,time1,time2)
                     print("volume = " + str(volume))
@@ -418,7 +422,7 @@ class OutFile(object):
             if (inc in self.increments):
                 if not self.increments[inc].verifyElementData(self.elements):
                     print("*** increment {} failed element data verification ***".format(inc))
-                
+
     def GetWeibullData(self,inc=-1):
         if inc<0:
             if len(self.increments.keys()) > 0:
@@ -426,27 +430,67 @@ class OutFile(object):
             else:
                 print("No increment data available")
                 return {}
-            
+
         if (inc in self.increments):
             WeibullData = self.increments[inc].getWeibullData()
-    
+
             s = "{},{nSegments},{POS},{POF},".format(inc,**WeibullData)
-            for x in WeibullData['limits']:
-                s += "{},".format(x)
-            for x in WeibullData['WeibullB']:
-                s += "{},".format(x)
-            for x in WeibullData['POSlayers']:
-                s += "{},".format(x)
-            for x in WeibullData['POFlayers']:
-                s += "{},".format(x)
-            s += "\n"
+            s += ','.join(WeibullData['limits'])    + ','
+            s += ','.join(WeibullData['WeibullB'])  + ','
+            s += ','.join(WeibullData['POSlayers']) + ','
+            s += ','.join(WeibullData['POFlayers']) + ',\n'
+
+            # for x in WeibullData['limits']:
+            #     s += "{},".format(x)
+            # for x in WeibullData['WeibullB']:
+            #     s += "{},".format(x)
+            # for x in WeibullData['POSlayers']:
+            #     s += "{},".format(x)
+            # for x in WeibullData['POFlayers']:
+            #     s += "{},".format(x)
+            # s += "\n"
+
             self.reportfile.write(s)
             self.reportfile.flush()
-            
+
             return WeibullData
         else:
-            raise DataIntegrityError     
-        
+            raise DataIntegrityError
+
+    def GetDirData(self, directions=[], inc=-1):
+        if inc < 0:
+            if len(self.increments.keys()) > 0:
+                inc = max(self.increments.keys())
+            else:
+                print("No increment data available")
+                return {}
+
+        if (inc in self.increments):
+            dirData = self.increments[inc].getDirData()
+
+            s = "{},{nSegments},{POS},{POF},".format(inc, **WeibullData)
+            s += ','.join(WeibullData['limits']) + ','
+            s += ','.join(WeibullData['WeibullB']) + ','
+            s += ','.join(WeibullData['POSlayers']) + ','
+            s += ','.join(WeibullData['POFlayers']) + ',\n'
+
+            # for x in WeibullData['limits']:
+            #     s += "{},".format(x)
+            # for x in WeibullData['WeibullB']:
+            #     s += "{},".format(x)
+            # for x in WeibullData['POSlayers']:
+            #     s += "{},".format(x)
+            # for x in WeibullData['POFlayers']:
+            #     s += "{},".format(x)
+            # s += "\n"
+
+            self.reportfile.write(s)
+            self.reportfile.flush()
+
+            return dirData
+        else:
+            raise DataIntegrityError
+
     def ReportOpen(self):
         try:
             self.reportfileName = self.filename[:-3] + "csv"
@@ -468,15 +512,10 @@ class OutFile(object):
         self.reportfile.write(s)
         self.reportfile.flush()
 
-
     def ReportClose(self):
         if self.reportfile:
             self.reportfile.close()
-            
-            
-    def Setnskip(self,nskip):
-        self.nskip=nskip
-        
+
     def InctoTime(self,inc):
         h=(inc-(self.nskip+1))*0.25
         hr=int(h)

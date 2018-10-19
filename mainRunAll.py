@@ -17,6 +17,8 @@ import time
 from ReadMarcFile import *
 from Triangulation import *
 
+import numpy as np
+
 
 all_skin_depth = 0.1610
 
@@ -43,6 +45,18 @@ tasks = [
 theMesh = mesh.Mesh()
 theMesh.createmesh(2)
 
+# test plotting to file
+filename = os.path.join( os.getenv('HOME','.'), 'Desktop', 'testplot.png')
+dirs = theMesh.getDirections()
+pltData = []
+for dir in dirs:
+    pltData.append(np.fabs( np.dot(dir, w) ))
+
+theMesh.setData(pltData)
+theMesh.createPolarPlot(filename)
+
+
+
 # extract and process incremental stress data from MSC.marc output files
 
 for task in tasks:
@@ -63,37 +77,48 @@ for task in tasks:
         else:
             print("file: {} does exist -- processing".format(outfile))
 
+    # start processing the the output file
     time0  = time.time()
     clock0 = time.clock()
 
-    data = OutFile(outfile, diameter, skin_depth)
+    theModel = OutFile(outfile, diameter, skin_depth)
     print("file opened in        {:.2f}s:{:.2f}s".format(time.time() - time0, time.clock() - clock0))
 
     # set parameters for the Weibull analysis
+    theModel.setParameters(sigma0=10., exponent_m=10., Vol0=1.0)
 
-    data.setParameters(sigma0=10., exponent_m=10., Vol0=1.0)
-    #data.setParameters(sigma0=30., exponent_m=10., Vol0=1.0)
-    #data.setParameters(sigma0=3., exponent_m=10., Vol0=1.0)
-
-    data.Setnskip(nskip)
-    print("# of gauss points: {} resulting in volume = {}".format(data.countGaussPoints(), data.getVolume()))
+    theModel.setNskip(nskip)
+    print("# of gauss points: {} resulting in volume = {}".format(theModel.countGaussPoints(), theModel.getVolume()))
 
     if nskip > 0:
-        inc = data.FindIncrement(nskip)
+        inc = theModel.FindIncrement(nskip)
         print("skipped {} increments {:.2f}s:{:.2f}s".format(nskip, time.time() - time0, time.clock() - clock0))
     else:
         inc = 0
 
     while ( inc >= 0):
-        inc = data.FindNextIncrement()
-        WeibullData = data.GetWeibullData(inc)
-    
-        data.WipeIncrement(inc)
+        inc         = theModel.FindNextIncrement()
+        WeibullData = theModel.GetWeibullData()
+
+        # directional analysis plot
+        filename = os.path.join('.', 'images', 'dir{:03d}cm_inc{:03d}.png'.format(int(diameter*100) ,inc))
+
+        dirs = theMesh.getDirections()
+        pltData = theModel.GetDirData(dirs)
+
+        theMesh.setData(pltData)
+        theMesh.createPolarPlot(filename)
+
+        # clean up before moving to the next increment
+        theModel.WipeIncrement(inc)
+
+        # log message
         print("increment parsed  {:.2f}s:{:.2f}s".format(time.time() - time0, time.clock() - clock0))
 
-    data.ReportClose()
-    data.Close()
+    # wrapping up
+    theModel.ReportClose()
+    theModel.Close()
     
     # clear processed data to avoid memory overload
-    del data
+    del theMesh
 
