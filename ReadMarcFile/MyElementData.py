@@ -20,6 +20,7 @@ class MyElementData(MyElement):
         setData(self, gp, gpData)
         has_data(self)
         scanWeibullB(self, weibullBArray, limits, sigma0=1.0, m=1.0)
+        scanDirData(self, directions)
     '''
 
     def __init__(self, id=-1, connect=[0,0,0,0,0,0,0,0], data=[{},{},{},{},{},{},{},{}]):
@@ -93,6 +94,8 @@ class MyElementData(MyElement):
         return GP_values
             
             
-        
-        
+    def scanDirData(self, directions):
+        dirData = []
+
+        return dirData
         

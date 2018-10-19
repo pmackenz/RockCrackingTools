@@ -8,7 +8,7 @@ from MyErrors      import *
 from ExtremeValue  import *
 from MyTensor      import *
 from StressPlots   import *
-from numpy         import array, inf
+from numpy         import array, inf, zeros
 
 class MyIncrement(object):
     '''
@@ -52,10 +52,12 @@ class MyIncrement(object):
         checkElem(self, elemID, gaussPoints, keywords)
         updateElementInfo(self, elemInfo)
         scanVolume(self)
+        scanDirData(self, directions, dirData)
         getVolume(self)
         scanWeibullB(self)
         getWeibullB(self)
         getWeibullData(self)
+        getDirData(self, directions)
         getProbabilities(self)
         printProbabilities(self)
         verifyElementData(self, refElements)
@@ -466,7 +468,11 @@ class MyIncrement(object):
                 self.elements[elem].scanWeibullB(self.weibullB, self.radii, self.sigma0, self.m)
             self.scannedWeibullB = True
         return sum(self.weibullB)
-    
+
+    def scanDirData(self, directions, dirData):
+        for elem in self.elements:
+            self.elements[elem].scanDirData(directions, dirData)
+
     def getWeibullB(self):
         if not self.scannedWeibullB:
             self.scanWeibullB()
@@ -502,7 +508,12 @@ class MyIncrement(object):
         props = {}
         self.getProbabilities(props)
         return props
-    
+
+    def getDirData(self, directions):
+        dirData = zeros(len(directions))
+        self.scanDirData(directions, dirData)
+        return dirData
+
     def getProbabilities(self, props):
         if not self.scannedVolume:
             self.scanVolume()

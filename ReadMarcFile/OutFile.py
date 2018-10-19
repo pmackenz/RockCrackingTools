@@ -466,27 +466,7 @@ class OutFile(object):
                 return {}
 
         if (inc in self.increments):
-            dirData = self.increments[inc].getDirData()
-
-            s = "{},{nSegments},{POS},{POF},".format(inc, **WeibullData)
-            s += ','.join(WeibullData['limits']) + ','
-            s += ','.join(WeibullData['WeibullB']) + ','
-            s += ','.join(WeibullData['POSlayers']) + ','
-            s += ','.join(WeibullData['POFlayers']) + ',\n'
-
-            # for x in WeibullData['limits']:
-            #     s += "{},".format(x)
-            # for x in WeibullData['WeibullB']:
-            #     s += "{},".format(x)
-            # for x in WeibullData['POSlayers']:
-            #     s += "{},".format(x)
-            # for x in WeibullData['POFlayers']:
-            #     s += "{},".format(x)
-            # s += "\n"
-
-            self.reportfile.write(s)
-            self.reportfile.flush()
-
+            dirData = self.increments[inc].getDirData(directions)
             return dirData
         else:
             raise DataIntegrityError

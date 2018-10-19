@@ -20,6 +20,7 @@ class MyPoint(object):
         
     methods:
         __init__(self, id=-1, pos=array([0.0,0.0,0.0]), jac=0.0, dist=0.0)
+        __str__(self)
         getID(self)
         setID(self, id)
         getPos(self)
@@ -27,8 +28,7 @@ class MyPoint(object):
         getVol(self)
         setVol(self, vol)
         getDist(self)
-        setDist(self, radius):
-        __str__(self)
+        setDist(self, radius)
     '''
     
     def __init__(self, id=-1, pos=array([0.0,0.0,0.0]), jac=0.0, dist=0.0):
@@ -39,7 +39,12 @@ class MyPoint(object):
         self.pos    = pos
         self.volume = jac
         self.dist   = dist
-        
+
+    def __str__(self):
+        s = "gauss point {:d} at {:f} {:f} {:f} with volume={:f}".format(self.id, self.pos[0], self.pos[1], self.pos[2],
+                                                                         self.volume)
+        return s
+
     def getID(self):
         return self.id
     
@@ -67,9 +72,5 @@ class MyPoint(object):
     
     def setDist(self, radius):
         self.dist = radius
-        
-    def __str__(self):
-        str = "gauss point {:d} at {:f} {:f} {:f} with volume={:f}".format(self.id, self.pos[0], self.pos[1], self.pos[2], self.volume)
-        return str
     
     

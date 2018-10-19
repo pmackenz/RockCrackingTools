@@ -13,9 +13,9 @@ class MyElement(object):
     a list of up to 8 MyPoint objects
     
     variables:
-        self.ID = id
-        self.nodes  = connect
-        self.gps = {}
+        self.ID    = id
+        self.nodes = connect
+        self.gps   = {}
     
     methods:
         __init__(self, id=-1, connect=[0,0,0,0,0,0,0,0])
@@ -38,6 +38,7 @@ class MyElement(object):
         getGPinfo(self)
         setGPinfo(self, GPinfo)
         scanVolume(self, volArray, limits)
+        scanDirData(self, directions, dirData)
         countGaussPoints(self)
     '''
 
@@ -235,7 +236,12 @@ class MyElement(object):
                 volArray[idx] += self.gps[pt].getVol()
             else:
                 print("element {}: gauss point outside boulder!".format(self.ID) )
-                    
+
+    def scanDirData(self, directions, dirData):
+        for pt in self.gpts:
+            for thisDir in directions:
+                stress = pt.ge
+
     def getMaxDist(self):
         maxdist = -1.0e16
         for pt in self.gps:
@@ -245,7 +251,7 @@ class MyElement(object):
                 maxdist = dist
                 
         return maxdist
-            
+
     def countGaussPoints(self):
         return len(self.gps)
     
