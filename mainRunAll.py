@@ -119,7 +119,7 @@ for task in tasks:
         pltData = theModel.GetDirData(dirs)
 
         theMesh.setData(pltData)
-        #theMesh.createPolarPlot(filename, 'time: {}'.format(incTime), 'MPa')
+        theMesh.createPolarPlot(filename, 'time: {}'.format(incTime), 'MPa')
         theMesh.createStereoPlot(filename2, 'time: {}'.format(incTime), 'MPa')
 
         # clean up before moving to the next increment

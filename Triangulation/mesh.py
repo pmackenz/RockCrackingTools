@@ -521,13 +521,15 @@ class Mesh(object):
 
         ## meridians
         an = linspace(-pi/2, pi/2, 100)
+        bn = linspace(-pi/2.*7./9., pi/2.*7./9., 80)
         phi = th = linspace(-pi/2, pi/2, 91)
 
         for i in range(91):
-            zz = 1 + cos(an) * cos(th[i])
             if (i % 5):
-                ax.plot(-2 * cos(an) * sin(th[i]) / zz, 2 * sin(an) / zz, '-', lw=0.1, color='grey')
+                zz = 1 + cos(bn) * cos(th[i])
+                ax.plot(-2 * cos(bn) * sin(th[i]) / zz, 2 * sin(bn) / zz, '-', lw=0.1, color='grey')
             else:
+                zz = 1 + cos(an) * cos(th[i])
                 ax.plot(-2 * cos(an) * sin(th[i]) / zz, 2 * sin(an) / zz, '-', lw=0.5, color='grey')
 
         ## latitudes lines
