@@ -62,3 +62,9 @@ data/\.DS_Store
 *.txt
 
 *.csv
+
+images/\.DS_Store
+
+*.png
+
+*.out

@@ -4,6 +4,7 @@ Created on May 10, 2017
 @author: pmackenz
 '''
 
+from numpy import array, zeros
 from MyElement import *
 
 class MyElementData(MyElement):
@@ -94,8 +95,17 @@ class MyElementData(MyElement):
         return GP_values
             
             
-    def scanDirData(self, directions):
-        dirData = []
+    def scanDirData(self, directions, dirData):
 
-        return dirData
+        for pt in self.gps:
+            for i in range( len(directions) ):
+                (sigma, tau) = self.data[pt-1]['Cauchy']['tensor'].getSigmaTau(directions[i])
+
+                # target function
+                f = sigma
+
+                # use max-value criterion
+                if ( f > dirData[i] ):
+                    dirData[i] = f
+
         

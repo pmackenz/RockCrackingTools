@@ -13,11 +13,13 @@ sys.path.append('./ReadMarcFile')
 
 import os
 import time
+import numpy as np
 
 from ReadMarcFile import *
 from Triangulation import *
 
-import numpy as np
+# for testing only: delete any csv file if it exists
+os.system('rm -f ./data/ws50cm.csv')
 
 
 all_skin_depth = 0.1610
@@ -40,22 +42,19 @@ tasks = [
     {'outfile':"./data/ws500cm.out", 'diameter':5.00,  'skindepth':all_skin_depth, 'startAtInc':336}
     ]
 
+# make sure image folder exists
+
+imagefolder = os.path.join('.','images')
+if ( not os.path.exists(imagefolder) ):
+    os.mkdir(imagefolder)
+else:
+    if ( not os.path.isdir(imagefolder) ):
+        raise FileExistsError
+
 # create triangulation for directional data visualization
 
 theMesh = mesh.Mesh()
-theMesh.createmesh(2)
-
-# test plotting to file
-filename = os.path.join( os.getenv('HOME','.'), 'Desktop', 'testplot.png')
-dirs = theMesh.getDirections()
-pltData = []
-for dir in dirs:
-    pltData.append(np.fabs( np.dot(dir, w) ))
-
-theMesh.setData(pltData)
-theMesh.createPolarPlot(filename)
-
-
+theMesh.createmesh(3)
 
 # extract and process incremental stress data from MSC.marc output files
 
@@ -81,7 +80,7 @@ for task in tasks:
     time0  = time.time()
     clock0 = time.clock()
 
-    theModel = OutFile(outfile, diameter, skin_depth)
+    theModel = OutFile.OutFile(outfile, diameter, skin_depth)
     print("file opened in        {:.2f}s:{:.2f}s".format(time.time() - time0, time.clock() - clock0))
 
     # set parameters for the Weibull analysis
@@ -100,14 +99,18 @@ for task in tasks:
         inc         = theModel.FindNextIncrement()
         WeibullData = theModel.GetWeibullData()
 
+        incTime = '{:02d}:{:02d}h'.format((inc-task['startAtInc'])//4, 15*(inc-task['startAtInc'])%4)
+
         # directional analysis plot
-        filename = os.path.join('.', 'images', 'dir{:03d}cm_inc{:03d}.png'.format(int(diameter*100) ,inc))
+        filename = os.path.join('.', 'images', 'dir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter*100), inc,
+                                                                                               (inc-task['startAtInc'])//4,
+                                                                                               15*(inc-task['startAtInc'])%4))
 
         dirs = theMesh.getDirections()
         pltData = theModel.GetDirData(dirs)
 
         theMesh.setData(pltData)
-        theMesh.createPolarPlot(filename)
+        theMesh.createPolarPlot(filename, 'time: {}'.format(incTime))
 
         # clean up before moving to the next increment
         theModel.WipeIncrement(inc)

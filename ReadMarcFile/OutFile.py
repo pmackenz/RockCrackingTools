@@ -435,10 +435,10 @@ class OutFile(object):
             WeibullData = self.increments[inc].getWeibullData()
 
             s = "{},{nSegments},{POS},{POF},".format(inc,**WeibullData)
-            s += ','.join(WeibullData['limits'])    + ','
-            s += ','.join(WeibullData['WeibullB'])  + ','
-            s += ','.join(WeibullData['POSlayers']) + ','
-            s += ','.join(WeibullData['POFlayers']) + ',\n'
+            s += ','.join(map(lambda x: str(x), WeibullData['limits']))    + ','
+            s += ','.join(map(lambda x: str(x), WeibullData['WeibullB']))  + ','
+            s += ','.join(map(lambda x: str(x), WeibullData['POSlayers'])) + ','
+            s += ','.join(map(lambda x: str(x), WeibullData['POFlayers'])) + ',\n'
 
             # for x in WeibullData['limits']:
             #     s += "{},".format(x)

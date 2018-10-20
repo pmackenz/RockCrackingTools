@@ -46,9 +46,9 @@ class Mesh(object):
         def getNodeAt(self,pos)
         def setData(self, data)
         def createTestData(self, data)
-        def createPolarPlot(self, filename)
-        def create3DPlot(self, dir, filename)
-        def createStereoPlot(self, filename)
+        def createPolarPlot(self, filename='unknown.png', title='')
+        def create3DPlot(self, dir, filename='unknown.png', title='')
+        def createStereoPlot(self, filename='unknown.png', title='')
     """
 
     def __init__(self):
@@ -291,7 +291,7 @@ class Mesh(object):
                 val *= -1.
                 self.data.append(val)
 
-    def createPolarPlot(self, filename='unknown.png'):
+    def createPolarPlot(self, filename='unknown.png', title=''):
 
         z = self.data
 
@@ -304,11 +304,12 @@ class Mesh(object):
         ax = fig.add_subplot(111)
         ax.set_aspect('equal')
 
-
         ax.set_axis_off()
 
         # plot contours
-        tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
+        contourLevels = linspace(0., 2., 10)
+        #tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
+        tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('YlOrRd'), levels=contourLevels)
         fig.colorbar(tcf)
 
         # plot the trianlulation
@@ -350,18 +351,29 @@ class Mesh(object):
 
         ax.set_xlabel('dip (degrees)')
         # ax.set_ylabel('Latitude (degrees)')
-        ax.text(0., 92., 'N', horizontalalignment='center', verticalalignment='bottom', fontsize=14,
-                backgroundcolor=(1., 1., 1., .3))
-        ax.text(92., 0., 'E', horizontalalignment='left', verticalalignment='center', fontsize=14,
-                backgroundcolor=(1., 1., 1., .3))
-        ax.text(0., -92., 'S', horizontalalignment='center', verticalalignment='top', fontsize=14,
-                backgroundcolor=(1., 1., 1., .3))
-        ax.text(-92., 0., 'W', horizontalalignment='right', verticalalignment='center', fontsize=14,
-                backgroundcolor=(1., 1., 1., .3))
+        ax.text(0., 92., 'N',
+                horizontalalignment='center', verticalalignment='bottom',
+                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+        ax.text(92., 0., 'E',
+                horizontalalignment='left', verticalalignment='center',
+                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+        ax.text(0., -92., 'S',
+                horizontalalignment='center', verticalalignment='top',
+                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+        ax.text(-92., 0., 'W',
+                horizontalalignment='right', verticalalignment='center',
+                fontsize=14, backgroundcolor=(1., 1., 1., .3))
 
+        ## title
+        if ( title ):
+            ax.text(90., 95., title,
+                    horizontalalignment='center', verticalalignment='bottom',
+                    fontsize=14, backgroundcolor=(1., 1., 1., .3))
+
+        ## export image file
         plt.savefig(filename)
 
-    def create3DPlot(self, filename='unknown.png'):
+    def create3DPlot(self, filename='unknown.png', title=''):
 
         # compute stress intensity for all nodes
         w = [1., 3., 3.]
@@ -454,7 +466,34 @@ class Mesh(object):
             ax.text(-92., 0., 'W', horizontalalignment='right', verticalalignment='center', fontsize=14,
                     backgroundcolor=(1., 1., 1., .3))
 
+            ## title
+            if ( title ):
+                ax.text(0., 95., title,
+                        horizontalalignment='center', verticalalignment='bottom',
+                        fontsize=16, backgroundcolor=(1., 1., 1., .3))
+
         plt.savefig(filename)
 
-    def createStereoPlot(self, filename='unknown.png'):
-        pass
+    def createStereoPlot(self, filename='unknown.png', title=''):
+
+        z = self.data
+
+        # x, y      = mesh.getVertices([0.,0.,1.])
+        x, y = self.getPolarVertices()
+        triangles = self.getTriangles()
+
+        # plot the triangularization
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.set_aspect('equal')
+
+        ax.set_axis_off()
+
+
+        ## title
+        if ( title ):
+            ax.text(0., 95., title,
+                    horizontalalignment='center', verticalalignment='bottom',
+                    fontsize=16, backgroundcolor=(1., 1., 1., .3))
+
+        plt.savefig(filename)

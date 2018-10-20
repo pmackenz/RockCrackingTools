@@ -35,6 +35,7 @@ class MyTensor(object):
         getWeibullB(self, sigma0=1.0, m=1.0)
         vonMises(self)
         Tresca(self)
+        getSigmaTau(self, n)
     '''
 
     def __init__(self, vals=[0.,0.,0.,0.,0.,0.]):
@@ -144,6 +145,18 @@ class MyTensor(object):
         val = max(self.pvals) - min(self.pvals)
         return val
     
+    def getSigmaTau(self, n):
+        # traction vector on plane
+        t = zeros(3)
+        t[0] = self.vals[0]*n[0] + self.vals[3]*n[1] + self.vals[5]*n[2]
+        t[1] = self.vals[3]*n[0] + self.vals[1]*n[1] + self.vals[4]*n[2]
+        t[2] = self.vals[5]*n[0] + self.vals[4]*n[1] + self.vals[2]*n[2]
 
+        # normal stress on plane
+        sigma =  t[0]*n[0] + t[1]*n[1] + t[2]*n[2]
 
-        
+        # shear stress on plane
+        tau = sqrt( t[0]*t[0] + t[1]*t[1] + t[2]*t[2] - sigma*sigma )
+
+        return (sigma, tau)
+

@@ -469,9 +469,12 @@ class MyIncrement(object):
             self.scannedWeibullB = True
         return sum(self.weibullB)
 
-    def scanDirData(self, directions, dirData):
-        for elem in self.elements:
-            self.elements[elem].scanDirData(directions, dirData)
+    def scanDirData(self, directions):
+        dirData = zeros(len( directions ))
+        for elemKey in self.elements.keys():
+            elem = self.elements[elemKey]
+            elem.scanDirData(directions, dirData)
+        return dirData
 
     def getWeibullB(self):
         if not self.scannedWeibullB:
@@ -510,9 +513,7 @@ class MyIncrement(object):
         return props
 
     def getDirData(self, directions):
-        dirData = zeros(len(directions))
-        self.scanDirData(directions, dirData)
-        return dirData
+        return self.scanDirData(directions)
 
     def getProbabilities(self, props):
         if not self.scannedVolume:
