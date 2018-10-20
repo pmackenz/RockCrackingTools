@@ -96,21 +96,31 @@ for task in tasks:
         inc = 0
 
     while ( inc >= 0):
-        inc         = theModel.FindNextIncrement()
+        inc = theModel.FindNextIncrement()
+        if (inc < 0):
+            break
+
         WeibullData = theModel.GetWeibullData()
 
-        incTime = '{:02d}:{:02d}h'.format((inc-task['startAtInc'])//4, 15*(inc-task['startAtInc'])%4)
+        incTime = '{:02d}:{:02d}h'.format((inc-task['startAtInc'])//4, ((inc-task['startAtInc'])%4)*15)
 
         # directional analysis plot
-        filename = os.path.join('.', 'images', 'dir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter*100), inc,
+        filename = os.path.join(imagefolder, 'dir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter*100), inc,
                                                                                                (inc-task['startAtInc'])//4,
-                                                                                               15*(inc-task['startAtInc'])%4))
+                                                                                               ((inc-task['startAtInc'])%4)*15))
+
+        filename2 = os.path.join(imagefolder, 'sdir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter * 100), inc,
+                                                                                               (inc - task[
+                                                                                                   'startAtInc']) // 4,
+                                                                                               ((inc - task[
+                                                                                                   'startAtInc']) % 4) * 15))
 
         dirs = theMesh.getDirections()
         pltData = theModel.GetDirData(dirs)
 
         theMesh.setData(pltData)
-        theMesh.createPolarPlot(filename, 'time: {}'.format(incTime))
+        #theMesh.createPolarPlot(filename, 'time: {}'.format(incTime), 'MPa')
+        theMesh.createStereoPlot(filename2, 'time: {}'.format(incTime), 'MPa')
 
         # clean up before moving to the next increment
         theModel.WipeIncrement(inc)

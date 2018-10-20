@@ -1,4 +1,4 @@
-from numpy import array, dot, cross, arccos, rad2deg, sqrt, sin, cos, pi, linspace
+from numpy import array, dot, cross, arccos, rad2deg, deg2rad, sqrt, sin, cos, pi, linspace
 
 from tricell import *
 from line import *
@@ -43,12 +43,13 @@ class Mesh(object):
         def getVertices(self, v)
         def getPolarVertices(self, v)
         def getTriangles(self)
+        def getStereographicVertices(self, v)
         def getNodeAt(self,pos)
         def setData(self, data)
         def createTestData(self, data)
-        def createPolarPlot(self, filename='unknown.png', title='')
-        def create3DPlot(self, dir, filename='unknown.png', title='')
-        def createStereoPlot(self, filename='unknown.png', title='')
+        def createPolarPlot(self, filename='unknown.png', title='', units='')
+        def create3DPlot(self, dir, filename='unknown.png', title='', units='')
+        def createStereoPlot(self, filename='unknown.png', title='', units='')
     """
 
     def __init__(self):
@@ -219,6 +220,20 @@ class Mesh(object):
 
         return x, y
 
+
+    def getStereographicVertices(self):
+
+        x = []
+        y = []
+
+        for node in self.nodes:
+            pos = node.getPos()
+            if pos[2] > -1.0:
+                x.append(2.*pos[0]/(1.+pos[2]))
+                y.append(2.*pos[1]/(1.+pos[2]))
+
+        return x, y
+
     def getTriangles(self):
         triangles = []
         for tri in self.cells:
@@ -291,7 +306,7 @@ class Mesh(object):
                 val *= -1.
                 self.data.append(val)
 
-    def createPolarPlot(self, filename='unknown.png', title=''):
+    def createPolarPlot(self, filename='unknown.png', title='', units=''):
 
         z = self.data
 
@@ -307,12 +322,15 @@ class Mesh(object):
         ax.set_axis_off()
 
         # plot contours
-        contourLevels = linspace(0., 2., 10)
+        contourLevels = linspace(0., 2.5, 26)
         #tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
         tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('YlOrRd'), levels=contourLevels)
-        fig.colorbar(tcf)
+        cb = fig.colorbar(tcf)
 
-        # plot the trianlulation
+        if (units):
+            cb.set_label(units)
+
+        # plot the triangulation
         ax.triplot(x, y, triangles, 'b-', lw=0.1)
 
         # plot polar axes
@@ -371,9 +389,9 @@ class Mesh(object):
                     fontsize=14, backgroundcolor=(1., 1., 1., .3))
 
         ## export image file
-        plt.savefig(filename)
+        plt.savefig(filename, dpi=300)
 
-    def create3DPlot(self, filename='unknown.png', title=''):
+    def create3DPlot(self, filename='unknown.png', title='', units=''):
 
         # compute stress intensity for all nodes
         w = [1., 3., 3.]
@@ -472,14 +490,14 @@ class Mesh(object):
                         horizontalalignment='center', verticalalignment='bottom',
                         fontsize=16, backgroundcolor=(1., 1., 1., .3))
 
-        plt.savefig(filename)
+        plt.savefig(filename, dpi=300)
 
-    def createStereoPlot(self, filename='unknown.png', title=''):
+    def createStereoPlot(self, filename='unknown.png', title='', units=''):
 
         z = self.data
 
         # x, y      = mesh.getVertices([0.,0.,1.])
-        x, y = self.getPolarVertices()
+        x, y = self.getStereographicVertices()
         triangles = self.getTriangles()
 
         # plot the triangularization
@@ -489,11 +507,77 @@ class Mesh(object):
 
         ax.set_axis_off()
 
+        # plot contours
+        contourLevels = linspace(0., 2.5, 26)
+        #tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
+        tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('YlOrRd'), levels=contourLevels)
+        cb = fig.colorbar(tcf)
+
+        if (units):
+            cb.set_label(units)
+
+        # plot the triangulation
+        ##ax.triplot(x, y, triangles, 'b-', lw=0.1)
+
+        ## meridians
+        an = linspace(-pi/2, pi/2, 100)
+        phi = th = linspace(-pi/2, pi/2, 91)
+
+        for i in range(91):
+            zz = 1 + cos(an) * cos(th[i])
+            if (i % 5):
+                ax.plot(-2 * cos(an) * sin(th[i]) / zz, 2 * sin(an) / zz, '-', lw=0.1, color='grey')
+            else:
+                ax.plot(-2 * cos(an) * sin(th[i]) / zz, 2 * sin(an) / zz, '-', lw=0.5, color='grey')
+
+        ## latitudes lines
+        for i in range(91):
+            zz = 1 + cos(phi[i]) * cos(an)
+            if (i % 5):
+                if ( i > 10 and i < 81):
+                    ax.plot(-2. * cos(phi[i]) * sin(an) / zz, 2. * sin(phi[i]) / zz, '-', lw=0.1, color='grey')
+            else:
+                ax.plot(-2. * cos(phi[i]) * sin(an) / zz, 2. * sin(phi[i]) / zz, '-', lw=0.5, color='grey')
+
+        ## labels
+        for i in range(-2,3):
+            phi = deg2rad(0.)
+            th = pi * i / 6.
+            label = "${:.0f}^\circ$".format(30 * i)
+            zz = 1. + cos(phi) * cos(th)
+            ax.text(-2. * cos(phi) * sin(th) / zz, 2. * sin(phi) / zz, label,
+                    horizontalalignment='center', verticalalignment='center', fontsize=10)
+
+        for i in range(-3,3):
+            phi = pi * i / 6.
+            th = -pi / 2.
+            label = "${:+.0f}^\circ$".format(30 * i)
+            if (i % 3 > 0):
+                zz = 1. + cos(phi) * cos(th)
+                ax.text(-2.2 * cos(phi) * sin(th) / zz, 2.2 * sin(phi) / zz, label,
+                        horizontalalignment='center', verticalalignment='center', fontsize=10)
+
+        ax.set_xlabel('dip (degrees)')
+        # ax.set_ylabel('Latitude (degrees)')
+        ax.text(0., 2.05, 'N',
+                horizontalalignment='center', verticalalignment='bottom',
+                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+        ax.text(2.05, 0., 'E',
+                horizontalalignment='left', verticalalignment='center',
+                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+        ax.text(0., -2.05, 'S',
+                horizontalalignment='center', verticalalignment='top',
+                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+        ax.text(-2.05, 0., 'W',
+                horizontalalignment='right', verticalalignment='center',
+                fontsize=14, backgroundcolor=(1., 1., 1., .3))
 
         ## title
         if ( title ):
-            ax.text(0., 95., title,
+            ax.text(2., 2.3, title,
                     horizontalalignment='center', verticalalignment='bottom',
-                    fontsize=16, backgroundcolor=(1., 1., 1., .3))
+                    fontsize=14, backgroundcolor=(1., 1., 1., .3))
 
-        plt.savefig(filename)
+        ## export image file
+        plt.savefig(filename, dpi=300)
+

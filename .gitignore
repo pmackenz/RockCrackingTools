@@ -68,3 +68,7 @@ images/\.DS_Store
 *.png
 
 *.out
+
+*.gif
+
+log
