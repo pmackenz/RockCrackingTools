@@ -331,7 +331,7 @@ class Mesh(object):
             cb.set_label(units)
 
         # plot the triangulation
-        ax.triplot(x, y, triangles, 'b-', lw=0.1)
+        ##ax.triplot(x, y, triangles, 'b-', lw=0.1)
 
         # plot polar axes
         ## circles
@@ -370,23 +370,17 @@ class Mesh(object):
         ax.set_xlabel('dip (degrees)')
         # ax.set_ylabel('Latitude (degrees)')
         ax.text(0., 92., 'N',
-                horizontalalignment='center', verticalalignment='bottom',
-                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+                horizontalalignment='center', verticalalignment='bottom', fontsize=14)
         ax.text(92., 0., 'E',
-                horizontalalignment='left', verticalalignment='center',
-                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+                horizontalalignment='left', verticalalignment='center', fontsize=14)
         ax.text(0., -92., 'S',
-                horizontalalignment='center', verticalalignment='top',
-                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+                horizontalalignment='center', verticalalignment='top', fontsize=14)
         ax.text(-92., 0., 'W',
-                horizontalalignment='right', verticalalignment='center',
-                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+                horizontalalignment='right', verticalalignment='center', fontsize=14)
 
         ## title
         if ( title ):
-            ax.text(90., 95., title,
-                    horizontalalignment='center', verticalalignment='bottom',
-                    fontsize=14, backgroundcolor=(1., 1., 1., .3))
+            ax.text(90., 95., title, horizontalalignment='center', verticalalignment='bottom', fontsize=14)
 
         ## export image file
         plt.savefig(filename, dpi=300)
@@ -562,23 +556,17 @@ class Mesh(object):
         ax.set_xlabel('dip (degrees)')
         # ax.set_ylabel('Latitude (degrees)')
         ax.text(0., 2.05, 'N',
-                horizontalalignment='center', verticalalignment='bottom',
-                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+                horizontalalignment='center', verticalalignment='bottom', fontsize=14)
         ax.text(2.05, 0., 'E',
-                horizontalalignment='left', verticalalignment='center',
-                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+                horizontalalignment='left', verticalalignment='center', fontsize=14)
         ax.text(0., -2.05, 'S',
-                horizontalalignment='center', verticalalignment='top',
-                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+                horizontalalignment='center', verticalalignment='top', fontsize=14)
         ax.text(-2.05, 0., 'W',
-                horizontalalignment='right', verticalalignment='center',
-                fontsize=14, backgroundcolor=(1., 1., 1., .3))
+                horizontalalignment='right', verticalalignment='center', fontsize=14)
 
         ## title
         if ( title ):
-            ax.text(2., 2.3, title,
-                    horizontalalignment='center', verticalalignment='bottom',
-                    fontsize=14, backgroundcolor=(1., 1., 1., .3))
+            ax.text(2., 2.3, title, horizontalalignment='center', verticalalignment='bottom', fontsize=14)
 
         ## export image file
         plt.savefig(filename, dpi=300)
