@@ -193,6 +193,7 @@ class OutFile(object):
     def WipeIncrement(self,id=0):
         if (id in self.increments):
             del self.increments[id]
+        self.data = []
         
     def ClearIncrements(self):
         self.increments = {}
