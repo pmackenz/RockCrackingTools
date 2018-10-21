@@ -18,9 +18,6 @@ import numpy as np
 from ReadMarcFile import *
 from Triangulation import *
 
-# for testing only: delete any csv file if it exists
-os.system('rm -f ./data/ws50cm.csv')
-
 
 all_skin_depth = 0.1610
 
@@ -133,5 +130,5 @@ for task in tasks:
     theModel.Close()
     
     # clear processed data to avoid memory overload
-    del theMesh
+    del theModel
 
