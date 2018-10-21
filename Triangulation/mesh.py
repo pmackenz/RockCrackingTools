@@ -384,6 +384,8 @@ class Mesh(object):
 
         ## export image file
         plt.savefig(filename, dpi=300)
+        plt.close()
+
 
     def create3DPlot(self, filename='unknown.png', title='', units=''):
 
@@ -485,6 +487,8 @@ class Mesh(object):
                         fontsize=16, backgroundcolor=(1., 1., 1., .3))
 
         plt.savefig(filename, dpi=300)
+        plt.close()
+
 
     def createStereoPlot(self, filename='unknown.png', title='', units=''):
 
@@ -570,4 +574,6 @@ class Mesh(object):
 
         ## export image file
         plt.savefig(filename, dpi=300)
+        plt.close()
+
 
