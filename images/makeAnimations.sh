@@ -10,7 +10,7 @@ convert -delay $DELAY sdir040cm*png anim_sdir040cm.gif
 convert -delay $DELAY sdir050cm*png anim_sdir050cm.gif
 convert -delay $DELAY sdir062cm*png anim_sdir062cm.gif
 convert -delay $DELAY sdir075cm*png anim_sdir075cm.gif
-convert -delay $DELAY sdir088cm*png anim_sdir088cm.gif
+convert -delay $DELAY sdir087cm*png anim_sdir087cm.gif
 convert -delay $DELAY sdir100cm*png anim_sdir100cm.gif
 convert -delay $DELAY sdir125cm*png anim_sdir125cm.gif
 convert -delay $DELAY sdir150cm*png anim_sdir150cm.gif
