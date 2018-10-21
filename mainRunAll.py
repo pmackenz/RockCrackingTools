@@ -25,7 +25,7 @@ os.system('rm -f ./data/ws50cm.csv')
 all_skin_depth = 0.1610
 
 tasks = [
-    {'outfile':"./data/ws15cm.out",  'diameter':0.15,  'skindepth':all_skin_depth, 'startAtInc':1},
+    {'outfile':"./data/ws15cm.out",  'diameter':0.15,  'skindepth':all_skin_depth, 'startAtInc':48},
     {'outfile':"./data/ws20cm.out",  'diameter':0.20,  'skindepth':all_skin_depth, 'startAtInc':48},
     {'outfile':"./data/ws25cm.out",  'diameter':0.25,  'skindepth':all_skin_depth, 'startAtInc':48},
     {'outfile':"./data/ws30cm.out",  'diameter':0.30,  'skindepth':all_skin_depth, 'startAtInc':48},
@@ -34,12 +34,12 @@ tasks = [
     {'outfile':"./data/ws63cm.out",  'diameter':0.625, 'skindepth':all_skin_depth, 'startAtInc':48},
     {'outfile':"./data/ws75cm.out",  'diameter':0.75,  'skindepth':all_skin_depth, 'startAtInc':48},
     {'outfile':"./data/ws88cm.out",  'diameter':0.875, 'skindepth':all_skin_depth, 'startAtInc':48},
-    {'outfile':"./data/ws100cm.out", 'diameter':1.00,  'skindepth':all_skin_depth, 'startAtInc':5},
+    {'outfile':"./data/ws100cm.out", 'diameter':1.00,  'skindepth':all_skin_depth, 'startAtInc':48},
     {'outfile':"./data/ws125cm.out", 'diameter':1.25,  'skindepth':all_skin_depth, 'startAtInc':84},
     {'outfile':"./data/ws150cm.out", 'diameter':1.50,  'skindepth':all_skin_depth, 'startAtInc':84},
     {'outfile':"./data/ws200cm.out", 'diameter':2.00,  'skindepth':all_skin_depth, 'startAtInc':168},
     {'outfile':"./data/ws300cm.out", 'diameter':3.00,  'skindepth':all_skin_depth, 'startAtInc':252},
-    {'outfile':"./data/ws500cm.out", 'diameter':5.00,  'skindepth':all_skin_depth, 'startAtInc':336}
+    {'outfile':"./data/ws500cm.out", 'diameter':5.00,  'skindepth':all_skin_depth, 'startAtInc':504}
     ]
 
 # make sure image folder exists
