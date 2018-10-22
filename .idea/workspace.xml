@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2935478a-5749-4920-a2ea-74aa5b7f2993" name="Default Changelist" comment="" />
+    <list default="true" id="2935478a-5749-4920-a2ea-74aa5b7f2993" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/makeAnimations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/images/makeAnimations.sh" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,21 +46,23 @@
     <session id="622103622">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.5" value="4" />
           <entry key="project.open.time.6" value="3" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="3732" />
+          <entry key="sh" value="268" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="Bash" value="268" />
           <entry key="Python" value="3732" />
         </counts>
       </usages-collector>
@@ -65,10 +70,12 @@
         <counts>
           <entry key="out" value="1" />
           <entry key="py" value="19" />
+          <entry key="sh" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="Bash" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Python" value="19" />
         </counts>
@@ -84,19 +91,28 @@
         <entry file="file://$PROJECT_DIR$/mainRunAll.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2074">
-              <caret line="122" column="35" lean-forward="true" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
+              <caret line="122" column="35" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Development/PythonProjects/RockCrackingTools/Triangulation/mesh.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="896">
+              <caret line="387" selection-start-line="387" selection-end-line="387" />
+              <folding>
+                <element signature="e#0#91#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/Development/PythonProjects/RockCrackingTools/Triangulation/mesh.py">
+        <entry file="file://$PROJECT_DIR$/images/makeAnimations.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1633">
-              <caret line="387" selection-start-line="387" selection-end-line="387" />
-              <folding>
-                <element signature="e#0#91#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -113,7 +129,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Development/PythonProjects/RockCrackingTools/ReadMarcFile/OutFile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2901">
+            <state relative-caret-position="3247">
               <caret line="195" column="22" selection-start-line="195" selection-start-column="22" selection-end-line="195" selection-end-column="22" />
             </state>
           </provider>
@@ -177,6 +193,7 @@
         <option value="$PROJECT_DIR$/mainRunAll.py" />
         <option value="$USER_HOME$/Development/PythonProjects/RockCrackingTools/ReadMarcFile/OutFile.py" />
         <option value="$USER_HOME$/Development/PythonProjects/RockCrackingTools/Triangulation/mesh.py" />
+        <option value="$PROJECT_DIR$/images/makeAnimations.sh" />
       </list>
     </option>
   </component>
@@ -195,6 +212,11 @@
             <path>
               <item name="RockCrackingTools" type="b2602c69:ProjectViewProjectNode" />
               <item name="RockCrackingTools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RockCrackingTools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RockCrackingTools" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RockCrackingTools" type="b2602c69:ProjectViewProjectNode" />
@@ -491,10 +513,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mainRunAll.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2074">
+          <caret line="122" column="35" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/Development/PythonProjects/RockCrackingTools/ReadMarcFile/MyIncrement.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3740">
           <caret line="225" column="52" selection-start-line="225" selection-start-column="52" selection-end-line="225" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Development/PythonProjects/RockCrackingTools/ReadMarcFile/OutFile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3247">
+          <caret line="195" column="22" selection-start-line="195" selection-start-column="22" selection-end-line="195" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -515,27 +551,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Development/PythonProjects/RockCrackingTools/ReadMarcFile/OutFile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2901">
-          <caret line="195" column="22" selection-start-line="195" selection-start-column="22" selection-end-line="195" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainRunAll.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="122" column="35" lean-forward="true" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Development/PythonProjects/RockCrackingTools/Triangulation/mesh.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1633">
+        <state relative-caret-position="896">
           <caret line="387" selection-start-line="387" selection-end-line="387" />
           <folding>
             <element signature="e#0#91#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/makeAnimations.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
         </state>
       </provider>
     </entry>
