@@ -107,7 +107,7 @@ class MyTensor(object):
         return sum(self.pvals)/3.0
     
     def getDeviator(self):
-        return self.vals - self.getMean()*self.Identity()
+        return MyTensor( self.vals - self.getMean()*self.Identity() )
     
     def Identity(self):
         return array([1,1,1,0,0,0])

@@ -99,7 +99,8 @@ class MyElementData(MyElement):
 
         for pt in self.gps:
             for i in range( len(directions) ):
-                (sigma, tau) = self.data[pt-1]['Cauchy']['tensor'].getSigmaTau(directions[i])
+                #(sigma, tau) = self.data[pt-1]['Cauchy']['tensor'].getSigmaTau(directions[i])
+                (sigma, tau) = self.data[pt-1]['Cauchy']['deviator'].getSigmaTau(directions[i])
 
                 # target function
                 f = sigma

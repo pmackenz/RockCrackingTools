@@ -353,8 +353,12 @@ class MyIncrement(object):
         txy    = float(line[98:108])
         tyz    = float(line[108:118])
         tzx    = float(line[118:128])
+
+        s0 = (sx + sy + sz)/3.0
         
-        gaussPointData['Cauchy'] = {'tensor':MyTensor([sx,sy,sz,txy,tyz,tzx]),'princvals':array([sig1,sig2,sig3])}
+        gaussPointData['Cauchy'] = {'tensor':MyTensor([sx,sy,sz,txy,tyz,tzx]),
+                                    'deviator':MyTensor([sx-s0,sy-s0,sz-s0,txy,tyz,tzx]),
+                                    'princvals':array([sig1,sig2,sig3])}
     
     def ParseLogstn(self,line,gaussPointData):
         '''

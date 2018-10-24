@@ -330,7 +330,9 @@ class Mesh(object):
         ax.set_axis_off()
 
         # plot contours
-        contourLevels = linspace(0., 2.5, 26)
+        ##contourLevels = linspace(0., 2.5, 26)  ## for stress
+        contourLevels = linspace(0., 1.0, 21)   ## for deviatoric stress
+
         #tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
         tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('YlOrRd'), levels=contourLevels)
         cb = fig.colorbar(tcf)
@@ -531,7 +533,9 @@ class Mesh(object):
         ax.set_axis_off()
 
         # plot contours
-        contourLevels = linspace(0., 2.5, 26)
+        ##contourLevels = linspace(0., 2.5, 26)  ## for stress
+        contourLevels = linspace(0., 1.0, 21)   ## for deviatoric stress
+
         #tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
         tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('YlOrRd'), levels=contourLevels)
         cb = fig.colorbar(tcf)
@@ -565,10 +569,6 @@ class Mesh(object):
                 ax.plot(-2. * cos(phi[i]) * sin(an) / zz, 2. * sin(phi[i]) / zz, '-', lw=0.5, color='grey')
 
         # plot the sun
-
-        ax.plot(0, 0, 'o', lw=1.0, markersize=10., markeredgecolor='orange',
-                markeredgewidth=1., markerfacecolor='yellow')
-
         if (self.sun[2] >= 0.0):
             x = (2. * self.sun[0] / (1. + self.sun[2]))
             y = (2. * self.sun[1] / (1. + self.sun[2]))
@@ -588,11 +588,9 @@ class Mesh(object):
 
         for i in range(12):
             phi = pi * i / 6.
-            th = -pi / 2.
             label = "${:+.0f}^\circ$".format(30 * i)
             if (i % 3 > 0):
-                zz = 1. + cos(phi) * cos(th)
-                ax.text(-2.2 * cos(phi) * sin(th) / zz, 2.2 * sin(phi) / zz, label,
+                ax.text( 2.2 * sin(phi), 2.2 * cos(phi), label,
                         horizontalalignment='center', verticalalignment='center', fontsize=10)
 
         ## label N, E, S, W:
