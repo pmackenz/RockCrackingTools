@@ -588,7 +588,7 @@ class Mesh(object):
 
         for i in range(12):
             phi = pi * i / 6.
-            label = "${:+.0f}^\circ$".format(30 * i)
+            label = "${:.0f}^\circ$".format(30 * i)
             if (i % 3 > 0):
                 ax.text( 2.2 * sin(phi), 2.2 * cos(phi), label,
                         horizontalalignment='center', verticalalignment='center', fontsize=10)
