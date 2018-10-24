@@ -1,4 +1,4 @@
-from numpy import array, dot, cross, arccos, rad2deg, deg2rad, sqrt, sin, cos, pi, linspace
+from numpy import array, dot, cross, arccos, rad2deg, deg2rad, sqrt, sin, cos, arccos, pi, linspace
 
 from tricell import *
 from line import *
@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 #import matplotlib.tri as tri
 #from matplotlib import cm
 
+DPI = 100
+#DPI = 300    # for high quality images
 
 class Mesh(object):
     """
@@ -23,6 +25,7 @@ class Mesh(object):
         self.cells = []
         self.level = -1
         self.data  = []
+        self.sun   = None
 
     methods:
         def __init__(self)
@@ -45,6 +48,7 @@ class Mesh(object):
         def getTriangles(self)
         def getStereographicVertices(self, v)
         def getNodeAt(self,pos)
+        def setSun(self, dir)
         def setData(self, data)
         def createTestData(self, data)
         def createPolarPlot(self, filename='unknown.png', title='', units='')
@@ -72,6 +76,7 @@ class Mesh(object):
         self.points = []
         self.triangles = []
         self.data = []
+        self.sun = None
 
     def clearGrid(self):
         self.nodes = []
@@ -291,6 +296,9 @@ class Mesh(object):
             self.refine()
             theLevel += 1
 
+    def setSun(self, dir):
+        self.sun = dir
+
     def setData(self, data):
         self.data = data
 
@@ -367,6 +375,23 @@ class Mesh(object):
                 ax.text(r * sin(th), r * cos(th), label,
                         horizontalalignment='center', verticalalignment='center', fontsize=10)
 
+        # plot the sun
+        if (self.sun[2] >=0.0):
+            r = rad2deg( arccos( self.sun[2]) )
+            r2 = sqrt( self.sun[0]*self.sun[0] + self.sun[1]*self.sun[1] )
+            if (r2 > 1e-12):
+                x = r * self.sun[0]/r2
+                y = r * self.sun[1]/r2
+            else:
+                x = 0.0
+                y = 0.0
+
+            ax.plot(x, y, 'o', lw=1.0, markersize=10., markeredgecolor='orange', markeredgewidth=1.,
+                    markerfacecolor='yellow')
+
+            print('Plotting sun at ', self.sun, '->', x, y)
+
+
         ax.set_xlabel('dip (degrees)')
         # ax.set_ylabel('Latitude (degrees)')
         ax.text(0., 92., 'N',
@@ -383,7 +408,7 @@ class Mesh(object):
             ax.text(90., 95., title, horizontalalignment='center', verticalalignment='bottom', fontsize=14)
 
         ## export image file
-        plt.savefig(filename, dpi=300)
+        plt.savefig(filename, dpi=DPI)
         plt.close()
 
 
@@ -486,7 +511,7 @@ class Mesh(object):
                         horizontalalignment='center', verticalalignment='bottom',
                         fontsize=16, backgroundcolor=(1., 1., 1., .3))
 
-        plt.savefig(filename, dpi=300)
+        plt.savefig(filename, dpi=DPI)
         plt.close()
 
 
@@ -539,6 +564,19 @@ class Mesh(object):
             else:
                 ax.plot(-2. * cos(phi[i]) * sin(an) / zz, 2. * sin(phi[i]) / zz, '-', lw=0.5, color='grey')
 
+        # plot the sun
+
+        ax.plot(0, 0, 'o', lw=1.0, markersize=10., markeredgecolor='orange',
+                markeredgewidth=1., markerfacecolor='yellow')
+
+        if (self.sun[2] >= 0.0):
+            x = (2. * self.sun[0] / (1. + self.sun[2]))
+            y = (2. * self.sun[1] / (1. + self.sun[2]))
+            ax.plot(x,y,'o', lw=1.0, markersize=10., markeredgecolor='orange',
+                    markeredgewidth=1., markerfacecolor='yellow')
+
+            print('Plotting sun at ', self.sun, '->', x, y)
+
         ## labels
         for i in range(-2,3):
             phi = deg2rad(0.)
@@ -548,7 +586,7 @@ class Mesh(object):
             ax.text(-2. * cos(phi) * sin(th) / zz, 2. * sin(phi) / zz, label,
                     horizontalalignment='center', verticalalignment='center', fontsize=10)
 
-        for i in range(-3,3):
+        for i in range(12):
             phi = pi * i / 6.
             th = -pi / 2.
             label = "${:+.0f}^\circ$".format(30 * i)
@@ -556,6 +594,8 @@ class Mesh(object):
                 zz = 1. + cos(phi) * cos(th)
                 ax.text(-2.2 * cos(phi) * sin(th) / zz, 2.2 * sin(phi) / zz, label,
                         horizontalalignment='center', verticalalignment='center', fontsize=10)
+
+        ## label N, E, S, W:
 
         ax.set_xlabel('dip (degrees)')
         # ax.set_ylabel('Latitude (degrees)')
@@ -573,7 +613,7 @@ class Mesh(object):
             ax.text(2., 2.3, title, horizontalalignment='center', verticalalignment='bottom', fontsize=14)
 
         ## export image file
-        plt.savefig(filename, dpi=300)
+        plt.savefig(filename, dpi=DPI)
         plt.close()
 
 

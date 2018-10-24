@@ -490,7 +490,7 @@ class MyIncrement(object):
             return
         
             
-        s = "X\tY\tZ\tx_dir\ty_dir\tz_dir\tvalue\tincrement"
+        s = "X\tY\tZ\tx_dir\ty_dir\tz_dir\tvalue"
         s += "\n"
         file_dir.write(s)
         file_dir.close()

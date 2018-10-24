@@ -10,6 +10,7 @@
 import sys
 sys.path.append('./Triangulation')
 sys.path.append('./ReadMarcFile')
+sys.path.append('./SunMotionTools')
 
 import os
 import time
@@ -17,6 +18,7 @@ import numpy as np
 
 from ReadMarcFile import *
 from Triangulation import *
+import SunMotionTools as sun
 
 
 all_skin_depth = 0.1610
@@ -51,7 +53,10 @@ else:
 # create triangulation for directional data visualization
 
 theMesh = mesh.Mesh()
-theMesh.createmesh(3)
+theMesh.createmesh(1)
+
+theSun = sun.SunMotion()      # default to Earth
+theSun.setLatitude(35.2271)   # Charlotte, NC
 
 # extract and process incremental stress data from MSC.marc output files
 
@@ -99,23 +104,23 @@ for task in tasks:
 
         WeibullData = theModel.GetWeibullData()
 
-        incTime = '{:02d}:{:02d}h'.format((inc-task['startAtInc'])//4, ((inc-task['startAtInc'])%4)*15)
+        hour = (inc-task['startAtInc'])//4
+        mins = ((inc-task['startAtInc'])%4)*15
+
+        incTime = '{:02d}:{:02d}h'.format(hour, mins)
 
         # directional analysis plot
-        filename = os.path.join(imagefolder, 'dir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter*100), inc,
-                                                                                               (inc-task['startAtInc'])//4,
-                                                                                               ((inc-task['startAtInc'])%4)*15))
+        filename = os.path.join(imagefolder, 'dir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter*100), inc, hour, mins))
+        filename2 = os.path.join(imagefolder, 'sdir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter * 100), inc, hour, mins))
 
-        filename2 = os.path.join(imagefolder, 'sdir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter * 100), inc,
-                                                                                               (inc - task[
-                                                                                                   'startAtInc']) // 4,
-                                                                                               ((inc - task[
-                                                                                                   'startAtInc']) % 4) * 15))
-
-        dirs = theMesh.getDirections()
-        pltData = theModel.GetDirData(dirs)
+        dirs    = theMesh.getDirections()
+        pltData = theModel.GetDirData(dirs, inc)
 
         theMesh.setData(pltData)
+
+        theSun.setDate(0., hour, mins, 0.)
+
+        theMesh.setSun(theSun.getDir())
         theMesh.createPolarPlot(filename, 'time: {}'.format(incTime), 'MPa')
         theMesh.createStereoPlot(filename2, 'time: {}'.format(incTime), 'MPa')
 
