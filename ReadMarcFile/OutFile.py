@@ -239,10 +239,13 @@ class OutFile(object):
                     thisInc.setParameters(self.diameter, self.delta, self.sigma0, self.m, self.Vol0)
                     thisInc.printProbabilities()
                     volume = thisInc.scanVolume()
+
                     [time1,time2]=self.InctoTime(thisInc.ID)
-                    filename_dir="./data/{}_direction_{}.txt".format(self.dia_cm,time1)
-                    thisInc.ScanStress(filename_dir)
+
+                    #filename_dir="./data/{}_direction_{}.txt".format(self.dia_cm,time1)
+                    #thisInc.ScanStress(filename_dir)
                     #thisInc.PlotStressDirection(filename_dir,self.dia_cm,time1,time2)
+
                     print("volume = " + str(volume))
                     
                     if (nInc in self.increments):
