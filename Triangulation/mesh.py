@@ -27,6 +27,8 @@ class Mesh(object):
         self.level = -1
         self.data  = {'deviator':[], 'mean':[]}
         self.sun   = None
+        self.lowerLimit = 0.0
+        self.upperLimit = 1.0
 
     methods:
         def __init__(self)
@@ -52,6 +54,7 @@ class Mesh(object):
         def setSun(self, dir)
         def setData(self, data, data2)
         def setLabels(self, s1, s2)
+        def setLimits(self, lower, upper)
         def createTestData(self, data)
         def createPolarPlot(self, filename='unknown.png', title='', units='')
         def create3DPlot(self, dir, filename='unknown.png', title='', units='')
@@ -82,6 +85,7 @@ class Mesh(object):
         self.triangles = []
         self.data = {'deviator':[], 'mean':[]}
         self.sun = None
+        self.setLimits()
 
     def clearGrid(self):
         self.nodes = []
@@ -312,6 +316,10 @@ class Mesh(object):
         self.label1 = lbl1
         self.label2 = lbl2
 
+    def setLimits(self, lower=0.0, upper=1.0):
+        self.lowerLimit = lower
+        self.upperLimit = upper
+
     def createTestData(self):
         # compute stress intensity for all nodes
         w = array([1., 3., 3.])
@@ -346,11 +354,14 @@ class Mesh(object):
         ax.set_axis_off()
 
         # plot contours
-        contourLevels = linspace(0., 2.5, 26)  ## for stress
-        ##contourLevels = linspace(0., 1.0, 21)   ## for deviatoric stress
+        range = self.upperLimit - self.lowerLimit
+        while range < 10.:
+            range *= 10.
+        while range > 100.:
+            range /= 10.
+        nsteps = int(range) + 1
+        contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
 
-        #tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
-        #tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('YlOrRd'), levels=contourLevels)
         tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
         cb = fig.colorbar(tcf)
 
@@ -462,15 +473,31 @@ class Mesh(object):
         ax.set_aspect('equal')
 
         # plot contours
-        tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
-        fig.colorbar(tcf)
+        range = self.upperLimit - self.lowerLimit
+        while range < 10.:
+            range *= 10.
+        while range > 100.:
+            range /= 10.
+        nsteps = int(range) + 1
+        contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
+
+        tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
+        cb = fig.colorbar(tcf)
 
         if 0:
             ax.set_axis_off()
 
             # plot contours
-            tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
-            fig.colorbar(tcf)
+            range = self.upperLimit - self.lowerLimit
+            while range < 10.:
+                range *= 10.
+            while range > 100.:
+                range /= 10.
+            nsteps = int(range) + 1
+            contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
+
+            tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
+            cb = fig.colorbar(tcf)
 
             # plot the trianlulation
             ax.triplot(x, y, triangles, 'b-', lw=0.1)
@@ -556,11 +583,14 @@ class Mesh(object):
         ax.set_axis_off()
 
         # plot contours
-        contourLevels = linspace(0., 2.5, 26)  ## for stress
-        ##contourLevels = linspace(0., 1.0, 21)   ## for deviatoric stress
+        range = self.upperLimit - self.lowerLimit
+        while range < 10.:
+            range *= 10.
+        while range > 100.:
+            range /= 10.
+        nsteps = int(range) + 1
+        contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
 
-        #tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('inferno'))
-        #tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('YlOrRd'), levels=contourLevels)
         tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
         cb = fig.colorbar(tcf)
 
@@ -669,8 +699,13 @@ class Mesh(object):
 
 
         # plot contours
-        contourLevels = linspace(0., 2.5, 26)  ## for stress
-        ##contourLevels = linspace(0., 1.0, 21)   ## for deviatoric stress
+        range = self.upperLimit - self.lowerLimit
+        while range < 10.:
+            range *= 10.
+        while range > 100.:
+            range /= 10.
+        nsteps = int(range) + 1
+        contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
 
         tcf1 = ax1.tricontourf(x, y, triangles, z1, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
         tcf2 = ax2.tricontourf(x, y, triangles, z2, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)

@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2935478a-5749-4920-a2ea-74aa5b7f2993" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Triangulation/mesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/Triangulation/mesh.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainRunAll.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainRunAll.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testPlot.py" beforeDir="false" afterPath="$PROJECT_DIR$/testPlot.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,34 +48,34 @@
     <session id="622103622">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="21" />
+          <entry key="project.closed" value="22" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="10" />
-          <entry key="project.open.time.6" value="5" />
+          <entry key="project.open.time.6" value="6" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="22" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="11574" />
+          <entry key="py" value="12093" />
           <entry key="sh" value="268" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="268" />
-          <entry key="Python" value="11574" />
+          <entry key="Python" value="12093" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="csv" value="2" />
+          <entry key="csv" value="3" />
           <entry key="out" value="1" />
-          <entry key="png" value="41" />
+          <entry key="png" value="47" />
           <entry key="py" value="63" />
           <entry key="sh" value="1" />
           <entry key="txt" value="1" />
@@ -82,8 +84,8 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="1" />
-          <entry key="Image" value="41" />
-          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="Image" value="47" />
+          <entry key="PLAIN_TEXT" value="5" />
           <entry key="Python" value="63" />
         </counts>
       </usages-collector>
@@ -94,22 +96,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainRunAll.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-519">
-              <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+            <state relative-caret-position="383">
+              <caret line="137" column="16" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ws30cm-history.csv">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ws30cm-history.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testPlot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="31" lean-forward="true" selection-start-line="2" selection-start-column="31" selection-end-line="3" selection-end-column="45" />
+            <state relative-caret-position="459">
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ws50cm-history.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ws75cm-history.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ws100cm-history.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -133,13 +160,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Triangulation/mesh.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9112">
-              <caret line="542" column="13" selection-start-line="542" selection-start-column="13" selection-end-line="542" selection-end-column="13" />
+            <state relative-caret-position="302">
+              <caret line="701" column="49" lean-forward="true" selection-start-line="701" selection-start-column="49" selection-end-line="701" selection-end-column="49" />
               <folding>
-                <marker date="1543188841888" expanded="true" signature="8018:8078" ph="..." />
+                <marker date="1543264697121" expanded="true" signature="8145:8317" ph="..." />
+                <marker date="1543264697121" expanded="true" signature="8247:8317" ph="..." />
               </folding>
             </state>
           </provider>
@@ -163,6 +191,7 @@
       <find>startAtInc</find>
       <find>direction_</find>
       <find>tensor</find>
+      <find>contours</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,10 +223,10 @@
         <option value="$PROJECT_DIR$/Triangulation/main.py" />
         <option value="$PROJECT_DIR$/ReadMarcFile/MyIncrement.py" />
         <option value="$PROJECT_DIR$/Triangulation/__init__.py" />
-        <option value="$PROJECT_DIR$/Triangulation/mesh.py" />
         <option value="$PROJECT_DIR$/ReadMarcFile/MyElementData.py" />
         <option value="$PROJECT_DIR$/testPlot.py" />
         <option value="$PROJECT_DIR$/mainRunAll.py" />
+        <option value="$PROJECT_DIR$/Triangulation/mesh.py" />
       </list>
     </option>
   </component>
@@ -211,7 +240,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,12 +255,13 @@
             <path>
               <item name="RockCrackingTools" type="b2602c69:ProjectViewProjectNode" />
               <item name="RockCrackingTools" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="Triangulation" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -391,8 +420,8 @@
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6513369" visible="true" weight="0.15611814" />
-      <window_info id="Structure" order="1" sideWeight="0.3486631" side_tool="true" visible="true" weight="0.15611814" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.65026736" visible="true" weight="0.15611814" />
+      <window_info active="true" id="Structure" order="1" sideWeight="0.3497326" side_tool="true" visible="true" weight="0.15611814" />
       <window_info id="Favorites" order="2" sideWeight="0.50151974" side_tool="true" weight="0.20735383" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298969" />
@@ -442,35 +471,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/testPlot.py</url>
-          <line>34</line>
+          <line>54</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ReadMarcFile/ReadMarcFile.py" />
-    <entry file="file://$PROJECT_DIR$/ReadMarcFile/StressPlots.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ReadMarcFile/PlotData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1649">
-          <caret line="98" column="57" selection-start-line="98" selection-start-column="57" selection-end-line="98" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ReadMarcFile/StressPlotGenerator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Triangulation/createmesh.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -692,9 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/ws50cm-history.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/sigma-dir-050cm_inc114_1630.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -705,6 +709,16 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/images/sigma-dir-050cm_inc077_0715.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testPlot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/ws50cm-history.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/ReadMarcFile/OutFile.py">
@@ -724,27 +738,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Triangulation/mesh.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9112">
-          <caret line="542" column="13" selection-start-line="542" selection-start-column="13" selection-end-line="542" selection-end-column="13" />
-          <folding>
-            <marker date="1543188841888" expanded="true" signature="8018:8078" ph="..." />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/data/ws30cm-history.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/testPlot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="31" lean-forward="true" selection-start-line="2" selection-start-column="31" selection-end-line="3" selection-end-column="45" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/data/ws75cm-history.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/ws100cm-history.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/mainRunAll.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-519">
-          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+        <state relative-caret-position="383">
+          <caret line="137" column="16" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/ws30cm-history.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Triangulation/mesh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="701" column="49" lean-forward="true" selection-start-line="701" selection-start-column="49" selection-end-line="701" selection-end-column="49" />
+          <folding>
+            <marker date="1543264697121" expanded="true" signature="8145:8317" ph="..." />
+            <marker date="1543264697121" expanded="true" signature="8247:8317" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
