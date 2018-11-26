@@ -23,6 +23,7 @@ import SunMotionTools as sun
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MultipleLocator
 
 
 all_skin_depth = 0.1610
@@ -78,7 +79,7 @@ for task in tasks:
         csvfile = "{}.csv".format(outfile[:-4])
         if os.path.exists(csvfile):
             print("file: {} already exists -- skipped".format(csvfile))
-            ###continue
+            continue
         else:
             print("file: {} does exist -- processing".format(outfile))
 
@@ -165,10 +166,12 @@ for task in tasks:
     t = []
     mx = []
     mn = []
+    anisotropyRatio = []
     for pt in stressHistory:
         t.append(pt[0])
         mx.append(pt[1])
         mn.append(pt[2])
+        anisotropyRatio.append(mx[-1]/mn[-1])
 
 
     plt.rc('grid', c='0.5', ls='-', lw=0.25)
