@@ -354,12 +354,12 @@ class Mesh(object):
         ax.set_axis_off()
 
         # plot contours
-        range = self.upperLimit - self.lowerLimit
-        while range < 10.:
-            range *= 10.
-        while range > 100.:
-            range /= 10.
-        nsteps = int(range) + 1
+        vrange = self.upperLimit - self.lowerLimit
+        while vrange < 10.:
+            vrange *= 10.
+        while vrange > 100.:
+            vrange /= 10.
+        nsteps = int(vrange) + 1
         contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
 
         tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
@@ -473,12 +473,12 @@ class Mesh(object):
         ax.set_aspect('equal')
 
         # plot contours
-        range = self.upperLimit - self.lowerLimit
-        while range < 10.:
-            range *= 10.
-        while range > 100.:
-            range /= 10.
-        nsteps = int(range) + 1
+        vrange = self.upperLimit - self.lowerLimit
+        while vrange < 10.:
+            vrange *= 10.
+        while vrange > 100.:
+            vrange /= 10.
+        nsteps = int(vrange) + 1
         contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
 
         tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
@@ -488,12 +488,12 @@ class Mesh(object):
             ax.set_axis_off()
 
             # plot contours
-            range = self.upperLimit - self.lowerLimit
-            while range < 10.:
-                range *= 10.
-            while range > 100.:
-                range /= 10.
-            nsteps = int(range) + 1
+            vrange = self.upperLimit - self.lowerLimit
+            while vrange < 10.:
+                vrange *= 10.
+            while vrange > 100.:
+                vrange /= 10.
+            nsteps = int(vrange) + 1
             contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
 
             tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
@@ -583,12 +583,12 @@ class Mesh(object):
         ax.set_axis_off()
 
         # plot contours
-        range = self.upperLimit - self.lowerLimit
-        while range < 10.:
-            range *= 10.
-        while range > 100.:
-            range /= 10.
-        nsteps = int(range) + 1
+        vrange = self.upperLimit - self.lowerLimit
+        while vrange < 10.:
+            vrange *= 10.
+        while vrange > 100.:
+            vrange /= 10.
+        nsteps = int(vrange) + 1
         contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
 
         tcf = ax.tricontourf(x, y, triangles, z, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
@@ -699,12 +699,12 @@ class Mesh(object):
 
 
         # plot contours
-        range = self.upperLimit - self.lowerLimit
-        while range < 10.:
-            range *= 10.
-        while range > 100.:
-            range /= 10.
-        nsteps = int(range) + 1
+        vrange = self.upperLimit - self.lowerLimit
+        while vrange < 10.:
+            vrange *= 10.
+        while vrange > 100.:
+            vrange /= 10.
+        nsteps = int(vrange) + 1
         contourLevels = linspace(self.lowerLimit, self.upperLimit, nsteps)  ## for stress
 
         tcf1 = ax1.tricontourf(x, y, triangles, z1, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
