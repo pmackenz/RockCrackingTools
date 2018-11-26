@@ -97,16 +97,32 @@ class MyElementData(MyElement):
             
     def scanDirData(self, directions, dirData):
 
+        #self.maxSigma = 0.0
+        #for pt in self.gps:
+        #    p = self.data[pt - 1]['Cauchy']['tensor'].getMaxVal()
+        #    if ( p > self.maxSigma ):
+        #        self.maxSigma = p
+
         for pt in self.gps:
+
+            #p = self.data[pt-1]['Cauchy']['tensor'].getMean()
+
             for i in range( len(directions) ):
-                #(sigma, tau) = self.data[pt-1]['Cauchy']['tensor'].getSigmaTau(directions[i])
-                (sigma, tau) = self.data[pt-1]['Cauchy']['deviator'].getSigmaTau(directions[i])
+                (sigma, tau) = self.data[pt-1]['Cauchy']['tensor'].getSigmaTau(directions[i])
+                #(dev, tau) = self.data[pt-1]['Cauchy']['deviator'].getSigmaTau(directions[i])
 
                 # target function
-                f = sigma
+                ##f = sigma
 
                 # use max-value criterion
-                if ( f > dirData[i] ):
-                    dirData[i] = f
+                ##if ( dev > dirData['deviator'][i] ):
+                ##    dirData['deviator'][i] = dev
+                ##    dirData['mean'][i] = p
+
+                if ( sigma > dirData['stress'][i] ):
+                    dirData['stress'][i] = sigma
+
+                #if ( sigma > dirData['top10'][i] and sigma >= 0.9*self.maxSigma ):
+                #    dirData['top10'][i] = sigma
 
         

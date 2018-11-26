@@ -97,10 +97,6 @@ def main():
                 ax.plot([0., 90.*np.sin(th)],[0., 90.*np.cos(th)], '-', lw=1.0, color='grey')
 
         ## labels
-        #ax.set_xticks([-90.,-60.,-30.,0.,30.,60.,90.], minor=False)
-        #ax.set_xticklabels(('90','60','30','0','30','60','90'))
-        #ax.set_yticks([-90,-60,-30,0,30,60,90], minor=False)
-        #ax.set_yticklabels(('90','60','30','0','30','60','90'))
         for i in range(7):
             r = 90.*i/6 + 0
             th = 2.*np.pi*(1.5/12.)
@@ -125,7 +121,7 @@ def main():
         ax.text(0.,-92., 'S', horizontalalignment='center', verticalalignment='top', fontsize=14, backgroundcolor=(1., 1., 1., .3))
         ax.text(-92.,0., 'W', horizontalalignment='right', verticalalignment='center', fontsize=14, backgroundcolor=(1., 1., 1., .3))
 
-    plt.show()
+        plt.savefig('demo.png')
 
 
 if (__name__ == "__main__"):

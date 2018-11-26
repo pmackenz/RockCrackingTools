@@ -20,6 +20,10 @@ from ReadMarcFile import *
 from Triangulation import *
 import SunMotionTools as sun
 
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 
 all_skin_depth = 0.1610
 
@@ -53,7 +57,7 @@ else:
 # create triangulation for directional data visualization
 
 theMesh = mesh.Mesh()
-theMesh.createmesh(2)
+theMesh.createmesh(3)
 
 theSun = sun.SunMotion()      # default to Earth
 theSun.setLatitude(35.2271)   # Charlotte, NC
@@ -74,7 +78,7 @@ for task in tasks:
         csvfile = "{}.csv".format(outfile[:-4])
         if os.path.exists(csvfile):
             print("file: {} already exists -- skipped".format(csvfile))
-            continue
+            ###continue
         else:
             print("file: {} does exist -- processing".format(outfile))
 
@@ -97,6 +101,8 @@ for task in tasks:
     else:
         inc = 0
 
+    stressHistory = []
+
     while ( inc >= 0):
         inc = theModel.FindNextIncrement()
         if (inc < 0):
@@ -110,19 +116,34 @@ for task in tasks:
         incTime = '{:02d}:{:02d}h'.format(hour, mins)
 
         # directional analysis plot
-        filename = os.path.join(imagefolder, 'dir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter*100), inc, hour, mins))
-        filename2 = os.path.join(imagefolder, 'sdir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter * 100), inc, hour, mins))
+        filename1 = os.path.join(imagefolder, 'sigma-dir-{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter*100), inc, hour, mins))
+        filename2 = os.path.join(imagefolder, 'dev-dir-{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter * 100), inc, hour, mins))
+        filename3 = os.path.join(imagefolder, 'DBLE-dev-mean-dir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter * 100), inc, hour, mins))
+        filename4 = os.path.join(imagefolder, 'DBLE-sdir-top10-dir{:03d}cm_inc{:03d}_{:02d}{:02d}.png'.format(int(diameter * 100), inc, hour, mins))
 
         dirs    = theMesh.getDirections()
         pltData = theModel.GetDirData(dirs, inc)
 
-        theMesh.setData(pltData)
+        # extract surface directional extrema
+        maxSigmaN = max(pltData['stress'])
+        minSigmaN = min(pltData['stress'])
 
+        stressHistory.append((float(hour)+float(mins)/60., maxSigmaN, minSigmaN))
+
+        # set up plot information
         theSun.setDate(0., hour, mins, 0.)
-
         theMesh.setSun(theSun.getDir())
-        theMesh.createPolarPlot(filename, 'time: {}'.format(incTime), 'MPa')
-        theMesh.createStereoPlot(filename2, 'time: {}'.format(incTime), 'MPa')
+
+        ## theMesh.setData(pltData['deviator'],pltData['mean'])
+        ## theMesh.setLabels('Deviator', 'mean stress')
+        ## theMesh.createPolarPlot(filename1, 'time: {}'.format(incTime), 'MPa')
+        ## theMesh.createStereoPlot(filename2, 'time: {}'.format(incTime), 'MPa')
+        ## theMesh.createDoubleStereoPlot(filename3, 'time: {}'.format(incTime), 'MPa')
+
+        theMesh.setData(pltData['stress'], pltData['top10'])
+        theMesh.setLabels('Max normal stress', 'top 10% normal stress')
+        theMesh.createStereoPlot(filename1, 'time: {}'.format(incTime), 'MPa')
+        #theMesh.createDoubleStereoPlot(filename4, 'time: {}'.format(incTime), 'MPa')
 
         # clean up before moving to the next increment
         theModel.WipeIncrement(inc)
@@ -133,7 +154,54 @@ for task in tasks:
     # wrapping up
     theModel.ReportClose()
     theModel.Close()
-    
+
+    # write stress history to file
+    reportfileName = outfile[:-4] + "-history.csv"
+    f = open(reportfileName,'w')
+    for pt in stressHistory:
+        f.write('{}, {}, {},\n'.format(*pt))
+    f.close()
+
+    t = []
+    mx = []
+    mn = []
+    for pt in stressHistory:
+        t.append(pt[0])
+        mx.append(pt[1])
+        mn.append(pt[2])
+
+
+    plt.rc('grid', c='0.5', ls='-', lw=0.25)
+    plt.rc('lines', lw=2, color='g')
+
+    plt.fill([0.0] + t + [24.], [0.0] + anisotropyRatio + [0.0], 'r', alpha=0.25)
+    plt.plot(t, anisotropyRatio, '-.r')
+    plt.plot(t, mx, '-b')
+    plt.plot(t, mn, '--g')
+
+    ax = list(plt.axis())
+    ax[0] = 0.0
+    ax[1] = 24.0
+    ax[2] = 0.0
+    plt.axis(ax)
+
+    # plt.xticks(range(25), ['00:00', '', '', '', '', '', '06:00', '', '', '', '', '', '12:00', '', '', '', '', '', '18:00', '', '', '', '', '', '24:00'])
+    plt.xticks([0, 6, 12, 18, 24], ['00:00', '06:00', '12:00', '18:00', '24:00'])
+    plt.minorticks_on()
+
+    ax = plt.gca()
+    ax.xaxis.set_minor_locator(MultipleLocator(1))
+
+    plt.legend(('anisotropy ratio [1]', 'max driving stress [MPa]', 'min driving stress [MPa]'))
+
+    plt.grid(True, which='major', axis='x')
+    plt.grid(True, which='minor', axis='x')
+    plt.grid(True, which='major', axis='y')
+
+    reportPlotName = outfile[:-4] + "-history.png"
+    plt.savefig(reportPlotName, dpi=300)
+    plt.close()
+
     # clear processed data to avoid memory overload
     del theModel
 

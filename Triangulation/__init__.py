@@ -1,5 +1,5 @@
 import mesh as mesh
-import line as line
-import main as main
 import node as node
+import line as line
 import tricell as tricell
+

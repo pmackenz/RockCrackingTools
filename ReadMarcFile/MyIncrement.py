@@ -474,7 +474,10 @@ class MyIncrement(object):
         return sum(self.weibullB)
 
     def scanDirData(self, directions):
-        dirData = zeros(len( directions ))
+        dirData = {'stress':zeros(len( directions )),
+                   'top10':zeros(len( directions )),
+                   'deviator':zeros(len( directions )),
+                   'mean':zeros(len( directions ))}
         for elemKey in self.elements.keys():
             elem = self.elements[elemKey]
             elem.scanDirData(directions, dirData)

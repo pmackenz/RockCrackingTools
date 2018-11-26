@@ -7,11 +7,12 @@ from node import *
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.gridspec import GridSpec
 
 #import matplotlib.tri as tri
 #from matplotlib import cm
 
-DPI = 100
+DPI = 150
 #DPI = 300    # for high quality images
 
 class Mesh(object):
@@ -24,7 +25,7 @@ class Mesh(object):
         self.nodes = []
         self.cells = []
         self.level = -1
-        self.data  = []
+        self.data  = {'deviator':[], 'mean':[]}
         self.sun   = None
 
     methods:
@@ -49,14 +50,18 @@ class Mesh(object):
         def getStereographicVertices(self, v)
         def getNodeAt(self,pos)
         def setSun(self, dir)
-        def setData(self, data)
+        def setData(self, data, data2)
+        def setLabels(self, s1, s2)
         def createTestData(self, data)
         def createPolarPlot(self, filename='unknown.png', title='', units='')
         def create3DPlot(self, dir, filename='unknown.png', title='', units='')
         def createStereoPlot(self, filename='unknown.png', title='', units='')
+        def createDoubleStereoPlot(self, filename='unknown.png', title='', units='')
     """
 
     def __init__(self):
+        self. label1 = 'label 1'
+        self. label2 = 'label 2'
         self.clearAll()
 
     def __str__(self):
@@ -75,7 +80,7 @@ class Mesh(object):
         self.clearGrid()
         self.points = []
         self.triangles = []
-        self.data = []
+        self.data = {'deviator':[], 'mean':[]}
         self.sun = None
 
     def clearGrid(self):
@@ -299,24 +304,35 @@ class Mesh(object):
     def setSun(self, dir):
         self.sun = dir
 
-    def setData(self, data):
-        self.data = data
+    def setData(self, data1, data2=[]):
+        self.data['data1'] = data1
+        self.data['data2'] = data2
+
+    def setLabels(self, lbl1='label 1', lbl2='label 2'):
+        self.label1 = lbl1
+        self.label2 = lbl2
 
     def createTestData(self):
         # compute stress intensity for all nodes
         w = array([1., 3., 3.])
         w /= sqrt(dot(w, w))
-        self.data = []
+        self.data['deviator'] = []
         for node in self.getNodes():
             # z.append(data.getF(node.getPos()))
             val = dot(w, node.getPos())
             if val < 0:
                 val *= -1.
-                self.data.append(val)
+                self.data['deviator'].append(val)
 
-    def createPolarPlot(self, filename='unknown.png', title='', units=''):
+    def createPolarPlot(self, filename='unknown.png', title='', units='', index=0):
 
-        z = self.data
+        if index == 0:
+            z = self.data['data1']
+        elif index == 1:
+            z = self.data['data2']
+        else:
+            print('no data set available for index={}'.format(index))
+            raise
 
         # x, y      = mesh.getVertices([0.,0.,1.])
         x, y = self.getPolarVertices()
@@ -518,9 +534,15 @@ class Mesh(object):
         plt.close()
 
 
-    def createStereoPlot(self, filename='unknown.png', title='', units=''):
+    def createStereoPlot(self, filename='unknown.png', title='', units='', index=0):
 
-        z = self.data
+        if index == 0:
+            z = self.data['data1']
+        elif index == 1:
+            z = self.data['data2']
+        else:
+            print('no data set available for index={}'.format(index))
+            raise
 
         # x, y      = mesh.getVertices([0.,0.,1.])
         x, y = self.getStereographicVertices()
@@ -611,6 +633,128 @@ class Mesh(object):
         ## title
         if ( title ):
             ax.text(2., 2.3, title, horizontalalignment='center', verticalalignment='bottom', fontsize=14)
+
+        ## export image file
+        plt.savefig(filename, dpi=DPI)
+        plt.close()
+
+
+    def createDoubleStereoPlot(self, filename='unknown.png', title='', units=''):
+
+        z1 = self.data['data1']
+        z2 = self.data['data2']
+
+        # x, y      = mesh.getVertices([0.,0.,1.])
+        x, y = self.getStereographicVertices()
+        triangles = self.getTriangles()
+
+        # plot the triangularization
+        #fig = plt.figure(figsize=[8.5, 3.5])
+        fig = plt.figure(figsize=[7., 3.5])
+        gs = GridSpec(1,7, figure=fig)
+        ax1 = fig.add_subplot(gs[0,:3] )
+        ax2 = fig.add_subplot(gs[0,3:] )
+        #ax3 = fig.add_subplot(gs[0,6] )
+
+        ax1.set_aspect('equal')
+        ax1.set_axis_off()
+        ax1.set_xlabel(self.label1)
+
+        ax2.set_aspect('equal')
+        ax2.set_axis_off()
+        ax2.set_xlabel(self.label2)
+
+        #ax3.set_aspect(10)
+        #ax3.set_axis_off()
+
+
+        # plot contours
+        contourLevels = linspace(0., 2.5, 26)  ## for stress
+        ##contourLevels = linspace(0., 1.0, 21)   ## for deviatoric stress
+
+        tcf1 = ax1.tricontourf(x, y, triangles, z1, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
+        tcf2 = ax2.tricontourf(x, y, triangles, z2, cmap=plt.get_cmap('gist_rainbow'), levels=contourLevels)
+
+        cb = fig.colorbar(tcf1, ax=ax2)
+
+        if (units):
+            cb.set_label(units)
+
+        for ax in [ax1, ax2]:
+
+            # plot the triangulation
+            ##ax.triplot(x, y, triangles, 'b-', lw=0.1)
+
+            ## meridians
+            an = linspace(-pi / 2, pi / 2, 100)
+            bn = linspace(-pi / 2. * 7. / 9., pi / 2. * 7. / 9., 80)
+            phi = th = linspace(-pi / 2, pi / 2, 91)
+
+            for i in range(91):
+                if (i % 5):
+                    zz = 1 + cos(bn) * cos(th[i])
+                    ax.plot(-2 * cos(bn) * sin(th[i]) / zz, 2 * sin(bn) / zz, '-', lw=0.1, color='grey')
+                else:
+                    zz = 1 + cos(an) * cos(th[i])
+                    ax.plot(-2 * cos(an) * sin(th[i]) / zz, 2 * sin(an) / zz, '-', lw=0.5, color='grey')
+
+            ## latitudes lines
+            for i in range(91):
+                zz = 1 + cos(phi[i]) * cos(an)
+                if (i % 5):
+                    if ( i > 10 and i < 81):
+                        ax.plot(-2. * cos(phi[i]) * sin(an) / zz, 2. * sin(phi[i]) / zz, '-', lw=0.1, color='grey')
+                else:
+                    ax.plot(-2. * cos(phi[i]) * sin(an) / zz, 2. * sin(phi[i]) / zz, '-', lw=0.5, color='grey')
+
+            # plot the sun
+            if (self.sun[2] >= 0.0):
+                x = (2. * self.sun[0] / (1. + self.sun[2]))
+                y = (2. * self.sun[1] / (1. + self.sun[2]))
+                ax.plot(x,y,'o', lw=1.0, markersize=10., markeredgecolor='orange',
+                        markeredgewidth=1., markerfacecolor='yellow')
+
+                print('Plotting sun at ', self.sun, '->', x, y)
+
+            ## labels
+            for i in range(-2,3):
+                phi = deg2rad(0.)
+                th = pi * i / 6.
+                label = "${:.0f}^\circ$".format(30 * i)
+                zz = 1. + cos(phi) * cos(th)
+                ax.text(-2. * cos(phi) * sin(th) / zz, 2. * sin(phi) / zz, label,
+                        horizontalalignment='center', verticalalignment='center', fontsize=9)
+
+            for i in range(12):
+                phi = pi * i / 6.
+                label = "${:.0f}^\circ$".format(30 * i)
+                if (i % 3 > 0):
+                    ax.text( 2.2 * sin(phi), 2.2 * cos(phi), label,
+                            horizontalalignment='center', verticalalignment='center', fontsize=9)
+
+            ## label N, E, S, W:
+
+            ax.set_xlabel('dip (degrees)')
+            # ax.set_ylabel('Latitude (degrees)')
+            ax.text(0., 2.05, 'N',
+                    horizontalalignment='center', verticalalignment='bottom', fontsize=11)
+            ax.text(2.05, 0., 'E',
+                    horizontalalignment='left', verticalalignment='center', fontsize=11)
+            ax.text(0., -2.05, 'S',
+                    horizontalalignment='center', verticalalignment='top', fontsize=11)
+            ax.text(-2.05, 0., 'W',
+                    horizontalalignment='right', verticalalignment='center', fontsize=11)
+
+        ## title
+        if ( title ):
+            ax1.text(2.3, 2.1, title, horizontalalignment='center', verticalalignment='bottom', fontsize=11)
+
+            ax1.text(0., -2.4, self.label1,
+                     horizontalalignment='center', verticalalignment='top', fontsize=11)
+            ax2.text(0., -2.4, self.label2,
+                     horizontalalignment='center', verticalalignment='top', fontsize=11)
+
+        plt.subplots_adjust(left=0.05, bottom=0.15, top=0.85, right=0.95)
 
         ## export image file
         plt.savefig(filename, dpi=DPI)
