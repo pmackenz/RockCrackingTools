@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2935478a-5749-4920-a2ea-74aa5b7f2993" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Triangulation/mesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/Triangulation/mesh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/makeAnimations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/images/makeAnimations.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainRunAll.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainRunAll.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,14 +58,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="13040" />
+          <entry key="py" value="13048" />
           <entry key="sh" value="268" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="268" />
-          <entry key="Python" value="13040" />
+          <entry key="Python" value="13048" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -138,12 +135,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Triangulation/mesh.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="200" column="44" selection-start-line="200" selection-start-column="44" selection-end-line="200" selection-end-column="44" />
+            <state relative-caret-position="317">
+              <caret line="290" column="8" selection-start-line="290" selection-start-column="8" selection-end-line="290" selection-end-column="8" />
               <folding>
-                <marker date="1543893581581" expanded="true" signature="2754:2787" ph="..." />
-                <marker date="1543893581581" expanded="true" signature="9328:9500" ph="..." />
-                <marker date="1543893581581" expanded="true" signature="9430:9500" ph="..." />
+                <marker date="1543894487635" expanded="true" signature="2754:2787" ph="..." />
+                <marker date="1543894487635" expanded="true" signature="8994:9166" ph="..." />
+                <marker date="1543894487635" expanded="true" signature="9096:9166" ph="..." />
               </folding>
             </state>
           </provider>
@@ -210,8 +207,8 @@
         <option value="$PROJECT_DIR$/Triangulation/__init__.py" />
         <option value="$PROJECT_DIR$/ReadMarcFile/MyElementData.py" />
         <option value="$PROJECT_DIR$/testPlot.py" />
-        <option value="$PROJECT_DIR$/Triangulation/mesh.py" />
         <option value="$PROJECT_DIR$/mainRunAll.py" />
+        <option value="$PROJECT_DIR$/Triangulation/mesh.py" />
       </list>
     </option>
   </component>
@@ -745,12 +742,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Triangulation/mesh.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="200" column="44" selection-start-line="200" selection-start-column="44" selection-end-line="200" selection-end-column="44" />
+        <state relative-caret-position="317">
+          <caret line="290" column="8" selection-start-line="290" selection-start-column="8" selection-end-line="290" selection-end-column="8" />
           <folding>
-            <marker date="1543893581581" expanded="true" signature="2754:2787" ph="..." />
-            <marker date="1543893581581" expanded="true" signature="9328:9500" ph="..." />
-            <marker date="1543893581581" expanded="true" signature="9430:9500" ph="..." />
+            <marker date="1543894487635" expanded="true" signature="2754:2787" ph="..." />
+            <marker date="1543894487635" expanded="true" signature="8994:9166" ph="..." />
+            <marker date="1543894487635" expanded="true" signature="9096:9166" ph="..." />
           </folding>
         </state>
       </provider>

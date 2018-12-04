@@ -284,9 +284,11 @@ class Mesh(object):
 
     def getTriangles(self):
         triangles = []
+
         for tri in self.cells:
             nodes = tri.getNodes()
             triangles.append([nodes[k].getID() for k in range(3)])
+        
         return triangles
 
     def getNodeAt(self, pos):
