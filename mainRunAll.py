@@ -58,7 +58,10 @@ else:
 # create triangulation for directional data visualization
 
 theMesh = mesh.Mesh()
+#theMesh.createmesh(3)
 theMesh.createmesh(3)
+
+theMesh.setCoordinateSystem('Smit')
 
 theSun = sun.SunMotion()      # default to Earth
 theSun.setLatitude(35.2271)   # Charlotte, NC

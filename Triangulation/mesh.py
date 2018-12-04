@@ -29,11 +29,13 @@ class Mesh(object):
         self.sun   = None
         self.lowerLimit = 0.0
         self.upperLimit = 1.0
+        self.system  = 'Identity'
 
     methods:
         def __init__(self)
         def __str__(self)
         def __repr__(self)
+        def setCoordinateSystem(self, type)
         def createmesh(self, targetlevel=1)
         def clearAll(self)
         def clearGrid(self)
@@ -63,6 +65,7 @@ class Mesh(object):
     """
 
     def __init__(self):
+        self.system  = 'Identity'
         self. label1 = 'label 1'
         self. label2 = 'label 2'
         self.clearAll()
@@ -91,6 +94,9 @@ class Mesh(object):
         self.nodes = []
         self.cells = []
         self.level = -1
+
+    def setCoordinateSystem(self, type):
+        self.system = type
 
     def addPoint(self, node):
         self.points.append(node)
@@ -171,12 +177,35 @@ class Mesh(object):
         return self.nodes
 
     def getDirections(self):
+
         dirs = []
-        for node in self.nodes:
-            w = node.getPos()
-            l = sqrt(dot(w,w))
-            if (l>0.01):
-                dirs.append(w/l)
+
+        if self.system == 'Identity' or self.system == 'Mars' or self.system == 'Peter':
+
+            for node in self.nodes:
+                w = node.getPos()
+                l = sqrt(dot(w,w))
+                if (l>0.01):
+                    dirs.append(w/l)
+
+        elif self.system == 'Earth' or self.system == 'Smit':
+
+            ##
+            ## x -> West  == -X = -pos[0]
+            ## y -> Up    ==  Z =  pos[2]
+            ## z -> North ==  Y =  pos[1]
+            ##
+
+            for node in self.nodes:
+                v = node.getPos()
+                w = array([-v[0],v[2],v[1]])
+                l = sqrt(dot(w,w))
+                if (l>0.01):
+                    dirs.append(w/l)
+
+        else:
+            raise
+
         return dirs
 
     def getVertices(self, v):
@@ -239,6 +268,11 @@ class Mesh(object):
 
         x = []
         y = []
+
+        ##
+        ##  X -> 2x/(1+z)
+        ##  Y -> 2y/(1+z)
+        ##
 
         for node in self.nodes:
             pos = node.getPos()
